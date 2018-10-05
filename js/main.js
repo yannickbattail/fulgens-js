@@ -13,10 +13,9 @@ function Gui() {
 
         var data = [instruction];
         ailurusApi.instructions(data, function (response) {
-            $('#Drone').html(response);
+            $('#out').html(response);
         });
     }
-
 
     function inLoop() {
         ailurusApi.playerContext(function (response) {
@@ -157,14 +156,16 @@ function Gui() {
         ctx.fillRect(coord.x, coord.y, 1, 1);
     }
 
-    var ailurusApi = new AilurusApi("http://localhost:5000/");
+    var ailurusApi = new AilurusMockedApi("http://localhost:5000/");
+    //var ailurusApi = new AilurusApi("http://localhost:5000/");
 
     var ctx = document.getElementById('canvas').getContext('2d');
+    document.getElementById('doIt').onclick = doIt;
     var repeat = 2000;
     var map = {};
     var playerContext = {};
     ailurusApi.map(function (response) {
         map = response;
-        setTimeout(inLoop, repeat);
+        setTimeout(inLoop, 500);
     });
 }

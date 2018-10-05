@@ -6,7 +6,7 @@ function AilurusMockedApi(url) {
     }
 }
 
-AilurusApi.prototype.instructions = function (instructions, success) {
+AilurusMockedApi.prototype.instructions = function (instructions, success) {
     var instructionsResult = [
         "ok, mocked instruction1",
         "ok, mocked instruction2"
@@ -16,7 +16,7 @@ AilurusApi.prototype.instructions = function (instructions, success) {
     }, 1000);
 }
 
-AilurusApi.prototype.playerContext = function (success) {
+AilurusMockedApi.prototype.playerContext = function (success) {
     var playerCtx = {
         "drones": [
             {
@@ -52,7 +52,7 @@ AilurusApi.prototype.playerContext = function (success) {
     }, 1000);
 }
 
-AilurusApi.prototype.map = function (success) {
+AilurusMockedApi.prototype.map = function (success) {
     var map = {
         "name": "lvl1",
         "dimensions": {

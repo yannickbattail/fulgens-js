@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ailurus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/ailurus-api.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body style="background-color: ghostwhite">
+    <canvas id="canvas" width="100" height="100"></canvas>
+
+    <div id="stats">
+
+    </div>
+    <div id="playerContext">
+
+    </div>
+    
+    <br />
+    Drone: <select id="Drone">
+        <option>Drone_1</option>
+        <option>Drone_2</option>
+    </select>
+    <br /> 
+    Action: <select id="TYPE">
+        <option value="Collect">Collect</option>
+        <option value="Unload">Unload</option>
+        <option value="MoveTo">Move to</option>
+    </select>
+    <br />
+    <select id="Destination">
+        <option value="2,2">Home</option>
+        <option value="98,98">Gold Mine</option>
+    </select>
+    <br />
+    <input type="button" value="Do it!" onclick="doIt()" />
+    <br />
+    <div id="out">
+		
+    </div>
+    <div id="lastUpdate">
+        Last update:
+    </div>
+</body>
+<script>
+    Gui();
+</script>
+</html>

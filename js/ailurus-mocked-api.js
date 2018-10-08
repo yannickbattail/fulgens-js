@@ -12,6 +12,7 @@ AilurusMockedApi.prototype.instructions = function (instructions, success) {
         "ok, mocked instruction2"
     ];
     setTimeout(function() {
+        console.log(instructionsResult);
         success(instructionsResult);
     }, 1000);
 }

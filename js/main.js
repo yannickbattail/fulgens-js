@@ -34,7 +34,7 @@ function Gui() {
 
     }
 
-    function formatnum(num){
+    function formatNum(num){
         return Math.round(num*10)/10;
     }
 
@@ -98,8 +98,8 @@ function Gui() {
             html += "   <td>"+drone.lastInstruction.type+"<td>";
             html += "   <td>"+formatProgress(drone.lastInstruction.progression)+"<td>";
             html += "   <td>"+formatCoord(drone.lastInstruction.destination)+"<td>";
-            html += "   <td>"+formatnum(drone.lastInstruction.distance)+"<td>";
-            html += "   <td>"+formatnum(drone.lastInstruction.duration)+"<td>";
+            html += "   <td>"+formatNum(drone.lastInstruction.distance)+"<td>";
+            html += "   <td>"+formatNum(drone.lastInstruction.duration)+"<td>";
             html += "   <td>"+formatDate(drone.lastInstruction.startedAt)+"<td>";
             html += "   <td>"+formatDate(drone.lastInstruction.endAt)+"<td>";
             html += "   <td>"+formatDate(drone.lastInstruction.abortedAt)+"<td>";
@@ -156,11 +156,18 @@ function Gui() {
         ctx.fillRect(coord.x, coord.y, 1, 1);
     }
 
+    function run() {
+        var code = $('#code').val();
+        code  = '(function() { '+code+' }) ();';
+        eval(code);
+    }
+
     var ailurusApi = new AilurusMockedApi("http://localhost:5000/");
     //var ailurusApi = new AilurusApi("http://localhost:5000/");
 
     var ctx = document.getElementById('canvas').getContext('2d');
     document.getElementById('doIt').onclick = doIt;
+    document.getElementById('run').onclick = run;
     var repeat = 2000;
     var map = {};
     var playerContext = {};

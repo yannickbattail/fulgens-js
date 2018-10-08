@@ -161,6 +161,41 @@ function Gui() {
         code  = '(function() { '+code+' }) ();';
         eval(code);
     }
+    
+    var fulgens = {};
+    fulgens.timeoutIDs = [];
+    fulgens.intervalIDs = [];
+    fulgens.setTimeout = function(theFunction, timeout){
+        var timeoutID = window.setTimeout(theFunction, timeout);
+        fulgens.timeoutIDs.push(timeoutID);
+        return timeoutID;
+    };
+    fulgens.setInterval = function(theFunction, delay){
+        var intervalID = window.setInterval(theFunction, delay);
+        fulgens.intervalIDs.push(intervalID);
+        return intervalID;
+    };
+    fulgens.clearTimeout = function(timeoutID){
+        window.setInterval(timeoutID);
+        var index = fulgens.timeoutIDs.indexOf(timeoutID);
+        if (index !== -1) fulgens.timeoutIDs.splice(index, 1);
+    };
+    fulgens.clearInterval = function(intervalID){
+        window.clearInterval(intervalID);
+        var index = fulgens.intervalIDs.indexOf(intervalID);
+        if (index !== -1) fulgens.intervalIDs.splice(index, 1);
+    };
+    fulgens.clearAll = function() {
+        for (const timeoutID of fulgens.timeoutIDs) {
+            window.clearTimeout(timeoutID);
+        }
+        fulgens.timeoutIDs = [];
+        for (const intervalID of fulgens.intervalIDs) {
+            window.clearInterval(intervalID);
+        }
+        fulgens.intervalIDs = [];
+    };
+
 
     var ailurusApi = new AilurusMockedApi("http://localhost:5000/");
     //var ailurusApi = new AilurusApi("http://localhost:5000/");

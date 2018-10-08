@@ -44,7 +44,8 @@
         Last update:
     </div>
     <div>
-        <textarea id="code" cols="80" rows="10">
+        <textarea id="code" cols="80" rows="15">
+
 var instruction = {};
 instruction['TYPE'] = 'MoveTo';
 instruction['DroneName'] = 'Drone_1';
@@ -54,6 +55,22 @@ var instructionList = [instruction];
 ailurusApi.instructions(instructionList, function (response) {
     $('#out').html(response);
 });
+
+function logResult(response) {
+    $('#out').html(response);
+}
+
+function collectDrone_1()
+{
+    var instruction = {
+        'TYPE': 'Collect',
+        'DroneName': 'Drone_1',
+        'Destination': null
+    };
+    ailurusApi.instructions([instruction], logResult);
+}
+
+fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
 
         </textarea>
     </div>

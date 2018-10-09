@@ -161,12 +161,16 @@ function Gui() {
         code  = '(function() { '+code+' }) ();';
         eval(code);
     }
+    function run() {
+        Fulgens.clearAll();
+    }
     
     var ailurusApi = new AilurusMockedApi("http://localhost:5000/");
     //var ailurusApi = new AilurusApi("http://localhost:5000/");
 
     var ctx = document.getElementById('canvas').getContext('2d');
     document.getElementById('doIt').onclick = doIt;
+    document.getElementById('stop').onclick = stop;
     document.getElementById('run').onclick = run;
     var repeat = 2000;
     var map = {};

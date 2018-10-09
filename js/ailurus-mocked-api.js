@@ -1,9 +1,5 @@
 
-function AilurusMockedApi(url) {
-    this.url = "http://localhost:5000/";
-    if (url) {
-        this.url = url;
-    }
+function AilurusMockedApi(url, playerName, pass) {
 }
 
 AilurusMockedApi.prototype.instructions = function (instructions, success) {

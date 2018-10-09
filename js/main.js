@@ -172,6 +172,8 @@ function Gui() {
     document.getElementById('doIt').onclick = doIt;
     document.getElementById('stop').onclick = stop;
     document.getElementById('run').onclick = run;
+    document.getElementById('createPlayer').onclick = run;
+    
     var repeat = 2000;
     var map = {};
     var playerContext = {};

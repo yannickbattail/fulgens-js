@@ -166,7 +166,10 @@ function Gui() {
     }
     
     var ailurusApi = new AilurusMockedApi("http://localhost:5000/");
-    //var ailurusApi = new AilurusApi("http://localhost:5000/");
+    //var ailurusApi = new AilurusApi("http://localhost:5000/", "panda", "roux");
+    ailurusApi.createPlayer(function (response) {
+        $('#out').html(response);
+    });
 
     var ctx = document.getElementById('canvas').getContext('2d');
     document.getElementById('doIt').onclick = doIt;

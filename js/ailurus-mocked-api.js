@@ -49,6 +49,42 @@ AilurusMockedApi.prototype.playerContext = function (success) {
     }, 1000);
 }
 
+AilurusMockedApi.prototype.createPlayer = function (success) {
+    var playerCtx = {
+        "drones": [
+            {
+                "name": "Drone_1",
+                "lastInstruction": null,
+                "currentPosition": {
+                    "x": 1,
+                    "y": 1
+                },
+                "state": 1,
+                "speed": 1,
+                "storageSize": 10,
+                "storage": null
+            },
+            {
+                "name": "Drone_2",
+                "lastInstruction": null,
+                "currentPosition": {
+                    "x": 1,
+                    "y": 1
+                },
+                "state": 1,
+                "speed": 1,
+                "storageSize": 10,
+                "storage": null
+            }
+        ],
+        "playerName": "RedPanda",
+        "resources": []
+    };
+    setTimeout(function() {
+        success(playerCtx);
+    }, 1000);
+}
+
 AilurusMockedApi.prototype.map = function (success) {
     var map = {
         "name": "lvl1",

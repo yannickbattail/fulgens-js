@@ -18,7 +18,7 @@ AilurusApi.prototype.instructions = function (instructions, success) {
     };
     $.ajax({
         "type": "POST",
-        "url": URL_PREFIX + "instructions",
+        "url": this.url + "instructions",
         "data": JSON.stringify(instructionSet),
         "contentType": 'application/json',
         "dataType": 'json',
@@ -33,13 +33,14 @@ AilurusApi.prototype.playerContext = function (success) {
     };
     $.ajax({
         "type": "POST",
-        "url": URL_PREFIX + "playerContext",
-        "data": JSON.stringify(Login),
+        "url": this.url + "playerContext",
+        "data": JSON.stringify(login),
         "contentType": 'application/json',
         "dataType": 'json',
         "success": success
     });
 }
+
 AilurusApi.prototype.createPlayer = function (success) {
     var login = {
         "PlayerName": this.playerName,
@@ -47,8 +48,8 @@ AilurusApi.prototype.createPlayer = function (success) {
     };
     $.ajax({
         "type": "POST",
-        "url": URL_PREFIX + "createPlayer",
-        "data": JSON.stringify(Login),
+        "url": this.url + "createPlayer",
+        "data": JSON.stringify(login),
         "contentType": 'application/json',
         "dataType": 'json',
         "success": success
@@ -58,7 +59,7 @@ AilurusApi.prototype.createPlayer = function (success) {
 AilurusApi.prototype.map = function (success) {
     $.ajax({
         "type": "GET",
-        "url": URL_PREFIX + "map",
+        "url": this.url + "map",
         "contentType": 'application/json',
         "dataType": 'json',
         "success": success

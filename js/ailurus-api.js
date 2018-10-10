@@ -1,3 +1,4 @@
+"use strict";
 
 function AilurusApi(url, playerName, pass) {
     this.url = "http://localhost:5000/";
@@ -6,7 +7,7 @@ function AilurusApi(url, playerName, pass) {
     }
     this.playerName = playerName;
     this.pass = pass;
-}
+};
 
 AilurusApi.prototype.instructions = function (instructions, success) {
     var instructionSet = {
@@ -24,7 +25,7 @@ AilurusApi.prototype.instructions = function (instructions, success) {
         "dataType": 'json',
         "success": success
     });
-}
+};
 
 AilurusApi.prototype.playerContext = function (success) {
     var login = {
@@ -39,7 +40,7 @@ AilurusApi.prototype.playerContext = function (success) {
         "dataType": 'json',
         "success": success
     });
-}
+};
 
 AilurusApi.prototype.createPlayer = function (success) {
     var login = {
@@ -54,7 +55,7 @@ AilurusApi.prototype.createPlayer = function (success) {
         "dataType": 'json',
         "success": success
     });
-}
+};
 
 AilurusApi.prototype.map = function (success) {
     $.ajax({
@@ -64,4 +65,4 @@ AilurusApi.prototype.map = function (success) {
         "dataType": 'json',
         "success": success
     });
-}
+};

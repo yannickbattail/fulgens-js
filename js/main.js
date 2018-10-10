@@ -165,8 +165,8 @@ function Gui() {
         Fulgens.clearAll();
     }
     
-    var ailurusApi = new AilurusMockedApi("http://localhost:5000/");
-    //var ailurusApi = new AilurusApi("http://localhost:5000/", "panda", "roux");
+    //var ailurusApi = new AilurusMockedApi("http://localhost:61218/");
+    var ailurusApi = new AilurusApi("http://localhost:61218/", "panda", "roux");
     ailurusApi.createPlayer(function (response) {
         $('#out').html(response);
     });

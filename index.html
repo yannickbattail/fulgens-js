@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th><label for="pass">Pass</label></th>
-                <td><input type="text" id="pass" /></td>
+                <td><input type="password" id="pass" /></td>
             </tr>
             <tr>
                 <th><input type="button" id="login" value="Login" /></th>
@@ -67,39 +67,36 @@
         <div>
             <textarea id="code" cols="80" rows="15">
 
-    var instruction = {};
-    instruction['TYPE'] = 'MoveTo';
-    instruction['DroneName'] = 'Drone_1';
-    instruction['Destination'] = {"X":98, "Y":98};
+var instruction = {};
+instruction['TYPE'] = 'MoveTo';
+instruction['DroneName'] = 'Drone_1';
+instruction['Destination'] = {"X":98, "Y":98};
 
-    var instructionList = [instruction];
-    ailurusApi.instructions(instructionList, function (response) {
-        $('#out').html(response);
-    });
+var instructionList = [instruction];
+ailurusApi.instructions(instructionList, function (response) {
+    $('#out').html(response);
+});
 
-    function logResult(response) {
-        $('#out').html(response);
-    }
+function logResult(response) {
+    $('#out').html(response);
+}
 
-    function collectDrone_1()
-    {
-        var instruction = {
-            'TYPE': 'Collect',
-            'DroneName': 'Drone_1',
-            'Destination': null
-        };
-        ailurusApi.instructions([instruction], logResult);
-    }
+function collectDrone_1()
+{
+    var instruction = {
+        'TYPE': 'Collect',
+        'DroneName': 'Drone_1',
+        'Destination': null
+    };
+    ailurusApi.instructions([instruction], logResult);
+}
 
-    Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
+Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
 
             </textarea>
         </div>
         <input type="button" id="run" value="run" />
         <input type="button" id="stop" value="stop" />
-        <label >Player name<input type="text" id="playerName" /></label>
-        <label >Pass<input type="password" id="pass" /></label>
-        <input type="button" id="createPlayer" value="create player" />
     </div>
 </body>
 <script>

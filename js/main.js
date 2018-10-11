@@ -165,17 +165,17 @@ function Gui() {
         Fulgens.clearAll();
     }
     function createPlayer() {
-        ailurusApi = new AilurusMockedApi("http://localhost:61218/",
-            $('#playerName').val(), $('#pass').val());
-        //ailurusApi = new AilurusApi("http://localhost:61218/",
+        //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
         //    $('#playerName').val(), $('#pass').val());
+        ailurusApi = new AilurusApi("http://localhost:61218/",
+            $('#playerName').val(), $('#pass').val());
 
         ailurusApi.createPlayer(function (response) {
             $('#loginBox').hide();
             $('#gui').show();
             ailurusApi.map(function (response) {
                 map = response;
-                setTimeout(inLoop, 500);
+                setTimeout(inLoop, 50);
             });
         });
     }
@@ -183,8 +183,7 @@ function Gui() {
     var repeat = 2000;
     var map = {};
     var playerContext = {};
-    var ailurusApi = new AilurusMockedApi("http://localhost:61218/");
-    //var ailurusApi = new AilurusApi("http://localhost:61218/", "panda", "roux");
+    var ailurusApi = {};
 
     $('#gui').hide();
     var ctx = document.getElementById('canvas').getContext('2d');

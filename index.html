@@ -11,77 +11,96 @@
     <script src="js/fulgens.js"></script>
 </head>
 <body style="background-color: ghostwhite">
-    <img src="img/fulgens.svg" alt="fulgens icon" width="50" height="50">
-    <canvas id="canvas" width="100" height="100"></canvas>
-
-    <div id="stats">
-
+    <h2><img src="img/fulgens.svg" alt="fulgens icon" width="50" height="50" /> Ailurus fulgens</h2>
+    <div id="loginBox">
+        <table>
+            <tr>
+                <th><label for="playerName">Player name</label></th>
+                <td><input type="text" id="playerName" /></td>
+            </tr>
+            <tr>
+                <th><label for="pass">Pass</label></th>
+                <td><input type="text" id="pass" /></td>
+            </tr>
+            <tr>
+                <th><input type="button" id="login" value="Login" /></th>
+                <td><input type="button" id="createPlayer" value="create player" /></td>
+            </tr>
+        </table>
     </div>
-    <div id="playerContext">
 
+    <div id="gui">
+        <canvas id="canvas" width="100" height="100"></canvas>
+
+        <div id="stats">
+
+        </div>
+        <div id="playerContext">
+
+        </div>
+        
+        <br />
+        Drone: <select id="Drone">
+            <option>Drone_1</option>
+            <option>Drone_2</option>
+        </select>
+        <br /> 
+        Action: <select id="TYPE">
+            <option value="Collect">Collect</option>
+            <option value="Unload">Unload</option>
+            <option value="MoveTo">Move to</option>
+        </select>
+        <br />
+        <select id="Destination">
+            <option value="2,2">Home</option>
+            <option value="98,98">Gold Mine</option>
+        </select>
+        <br />
+        <input type="button" id="doIt" value="Do it!" />
+        <br />
+        <div id="out">
+            
+        </div>
+        <div id="lastUpdate">
+            Last update:
+        </div>
+        <div>
+            <textarea id="code" cols="80" rows="15">
+
+    var instruction = {};
+    instruction['TYPE'] = 'MoveTo';
+    instruction['DroneName'] = 'Drone_1';
+    instruction['Destination'] = {"X":98, "Y":98};
+
+    var instructionList = [instruction];
+    ailurusApi.instructions(instructionList, function (response) {
+        $('#out').html(response);
+    });
+
+    function logResult(response) {
+        $('#out').html(response);
+    }
+
+    function collectDrone_1()
+    {
+        var instruction = {
+            'TYPE': 'Collect',
+            'DroneName': 'Drone_1',
+            'Destination': null
+        };
+        ailurusApi.instructions([instruction], logResult);
+    }
+
+    Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
+
+            </textarea>
+        </div>
+        <input type="button" id="run" value="run" />
+        <input type="button" id="stop" value="stop" />
+        <label >Player name<input type="text" id="playerName" /></label>
+        <label >Pass<input type="password" id="pass" /></label>
+        <input type="button" id="createPlayer" value="create player" />
     </div>
-    
-    <br />
-    Drone: <select id="Drone">
-        <option>Drone_1</option>
-        <option>Drone_2</option>
-    </select>
-    <br /> 
-    Action: <select id="TYPE">
-        <option value="Collect">Collect</option>
-        <option value="Unload">Unload</option>
-        <option value="MoveTo">Move to</option>
-    </select>
-    <br />
-    <select id="Destination">
-        <option value="2,2">Home</option>
-        <option value="98,98">Gold Mine</option>
-    </select>
-    <br />
-    <input type="button" id="doIt" value="Do it!" />
-    <br />
-    <div id="out">
-		
-    </div>
-    <div id="lastUpdate">
-        Last update:
-    </div>
-    <div>
-        <textarea id="code" cols="80" rows="15">
-
-var instruction = {};
-instruction['TYPE'] = 'MoveTo';
-instruction['DroneName'] = 'Drone_1';
-instruction['Destination'] = {"X":98, "Y":98};
-
-var instructionList = [instruction];
-ailurusApi.instructions(instructionList, function (response) {
-    $('#out').html(response);
-});
-
-function logResult(response) {
-    $('#out').html(response);
-}
-
-function collectDrone_1()
-{
-    var instruction = {
-        'TYPE': 'Collect',
-        'DroneName': 'Drone_1',
-        'Destination': null
-    };
-    ailurusApi.instructions([instruction], logResult);
-}
-
-Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
-
-        </textarea>
-    </div>
-    <input type="button" id="run" value="run" />
-    <input type="button" id="stop" value="stop" />
-    <label >Player name<input type="text" id="playerName" /></label>
-    <label >Pass<input type="password" id="pass" /></label>
-    <input type="button" id="createPlayer" value="create player" />
 </body>
 <script>
     Gui();

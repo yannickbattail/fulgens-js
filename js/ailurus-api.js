@@ -41,7 +41,6 @@ AilurusApi.prototype.playerContext = function (success) {
         "success": success
     });
 };
-
 AilurusApi.prototype.createPlayer = function (success) {
     var login = {
         "PlayerName": this.playerName,

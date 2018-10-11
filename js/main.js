@@ -161,27 +161,37 @@ function Gui() {
         code  = '(function() { '+code+' }) ();';
         eval(code);
     }
-    function run() {
+    function stop() {
         Fulgens.clearAll();
     }
-    
-    //var ailurusApi = new AilurusMockedApi("http://localhost:61218/");
-    var ailurusApi = new AilurusApi("http://localhost:61218/", "panda", "roux");
-    ailurusApi.createPlayer(function (response) {
-        $('#out').html(response);
-    });
+    function createPlayer() {
+        ailurusApi = new AilurusMockedApi("http://localhost:61218/",
+            $('#playerName').val(), $('#pass').val());
+        //ailurusApi = new AilurusApi("http://localhost:61218/",
+        //    $('#playerName').val(), $('#pass').val());
 
+        ailurusApi.createPlayer(function (response) {
+            $('#loginBox').hide();
+            $('#gui').show();
+            ailurusApi.map(function (response) {
+                map = response;
+                setTimeout(inLoop, 500);
+            });
+        });
+    }
+
+    var repeat = 2000;
+    var map = {};
+    var playerContext = {};
+    var ailurusApi = new AilurusMockedApi("http://localhost:61218/");
+    //var ailurusApi = new AilurusApi("http://localhost:61218/", "panda", "roux");
+
+    $('#gui').hide();
     var ctx = document.getElementById('canvas').getContext('2d');
     document.getElementById('doIt').onclick = doIt;
     document.getElementById('stop').onclick = stop;
     document.getElementById('run').onclick = run;
-    document.getElementById('createPlayer').onclick = run;
-    
-    var repeat = 2000;
-    var map = {};
-    var playerContext = {};
-    ailurusApi.map(function (response) {
-        map = response;
-        setTimeout(inLoop, 500);
-    });
+    document.getElementById('createPlayer').onclick = createPlayer;
+    document.getElementById('login').onclick = createPlayer;
+
 }

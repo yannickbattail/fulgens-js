@@ -9,7 +9,7 @@ function AilurusApi(url, playerName, pass) {
     this.pass = pass;
 };
 
-AilurusApi.prototype.instructions = function (instructions, success) {
+AilurusApi.prototype.instructions = function (instructions, success, error) {
     var instructionSet = {
         "Login": {
             "PlayerName": this.playerName,
@@ -23,11 +23,12 @@ AilurusApi.prototype.instructions = function (instructions, success) {
         "data": JSON.stringify(instructionSet),
         "contentType": 'application/json',
         "dataType": 'json',
-        "success": success
+        "success": success,
+        "error" : error
     });
 };
 
-AilurusApi.prototype.playerContext = function (success) {
+AilurusApi.prototype.playerContext = function (success, error) {
     var login = {
         "PlayerName": this.playerName,
         "Pass": this.pass
@@ -38,10 +39,11 @@ AilurusApi.prototype.playerContext = function (success) {
         "data": JSON.stringify(login),
         "contentType": 'application/json',
         "dataType": 'json',
-        "success": success
+        "success": success,
+        "error" : error
     });
 };
-AilurusApi.prototype.createPlayer = function (success) {
+AilurusApi.prototype.createPlayer = function (success, error) {
     var login = {
         "PlayerName": this.playerName,
         "Pass": this.pass
@@ -52,16 +54,18 @@ AilurusApi.prototype.createPlayer = function (success) {
         "data": JSON.stringify(login),
         "contentType": 'application/json',
         "dataType": 'json',
-        "success": success
+        "success": success,
+        "error" : error
     });
 };
 
-AilurusApi.prototype.map = function (success) {
+AilurusApi.prototype.map = function (success, error) {
     $.ajax({
         "type": "GET",
         "url": this.url + "map",
         "contentType": 'application/json',
         "dataType": 'json',
-        "success": success
+        "success": success,
+        "error" : error
     });
 };

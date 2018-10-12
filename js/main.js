@@ -17,7 +17,16 @@ function Gui() {
         });
     }
 
-    function inLoop() {
+    function startGui() {
+        $('#loginBox').hide();
+        $('#gui').show();
+        ailurusApi.map(function (response) {
+            map = response;
+            setTimeout(loopGui, 50);
+        });
+    }
+
+    function loopGui() {
         ailurusApi.playerContext(function (response) {
             console.log(response);
             playerContext = response;
@@ -170,14 +179,29 @@ function Gui() {
         ailurusApi = new AilurusApi("http://localhost:61218/",
             $('#playerName').val(), $('#pass').val());
 
-        ailurusApi.createPlayer(function (response) {
-            $('#loginBox').hide();
-            $('#gui').show();
-            ailurusApi.map(function (response) {
-                map = response;
-                setTimeout(inLoop, 50);
-            });
-        });
+        ailurusApi.createPlayer(
+            (response) => {
+                startGui();
+            },
+            (responseErr) => {
+                $('#loginBox').html(responseErr);
+            }
+        );
+    }
+    function login() {
+        //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
+        //    $('#playerName').val(), $('#pass').val());
+        ailurusApi = new AilurusApi("http://localhost:61218/",
+            $('#playerName').val(), $('#pass').val());
+
+        ailurusApi.playerContext(
+            (response) => {
+                startGui();
+            },
+            (responseErr) => {
+                $('#loginBox').html(responseErr);
+            }
+        );
     }
 
     var repeat = 2000;
@@ -191,6 +215,6 @@ function Gui() {
     document.getElementById('stop').onclick = stop;
     document.getElementById('run').onclick = run;
     document.getElementById('createPlayer').onclick = createPlayer;
-    document.getElementById('login').onclick = createPlayer;
+    document.getElementById('login').onclick = login;
 
 }

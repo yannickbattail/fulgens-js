@@ -28,7 +28,7 @@ function Gui() {
 
     function loopGui() {
         ailurusApi.playerContext(function (response) {
-            console.log(response);
+            //console.log(response);
             playerContext = response;
             clear();
             drawMainBuilding(map.items[0].position);
@@ -37,8 +37,8 @@ function Gui() {
             drawDrone(playerContext.drones[1].currentPosition);
             displayStatsDrones(playerContext.drones);
             displayPlayerContext(playerContext);
-            $('#lastUpdate').html('Last update: ' + new Date().getTime());
-            setTimeout(inLoop, repeat);
+            $('#lastUpdate').html('Last update: ' + formatDate(new Date()));
+            setTimeout(loopGui, repeat);
         });
 
     }
@@ -189,9 +189,8 @@ function Gui() {
         );
     }
     function login() {
-        //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
-        //    $('#playerName').val(), $('#pass').val());
-        ailurusApi = new AilurusApi("http://localhost:61218/",
+        //for tests use class: AilurusMockedApi
+        ailurusApi = new AilurusApi($('#hurle').val(),
             $('#playerName').val(), $('#pass').val());
 
         ailurusApi.playerContext(

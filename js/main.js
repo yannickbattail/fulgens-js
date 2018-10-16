@@ -166,6 +166,7 @@ function Gui() {
     }
 
     function run() {
+        Fulgens.clearAll();
         var code = $('#code').val();
         code  = '(function() { '+code+' }) ();';
         eval(code);

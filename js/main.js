@@ -22,6 +22,7 @@ function Gui() {
         $('#gui').show();
         ailurusApi.map(function (response) {
             map = response;
+            displayGoal(map);
             setTimeout(loopGui, 50);
         });
     }
@@ -140,9 +141,32 @@ function Gui() {
             html += "   <td>"+formatStrorage(resource)+"<td>";
             html += "</tr>";
         }
+        html += "<tr>";
+        if (playerContext.goalAchieved) {
+            html += "   <th><h3>Goal achieved!</h3></th>";
+        } else {
+            html += "   <th>Goal not yet achieved</th>";
+        }
+        html += "</tr>";
         html += "</table>";
 
         $('#playerContext').html(html);
+    }
+
+    function displayGoal(map) {
+        var html = "<table>";
+        html += "<tr>";
+        html += "   <th>Goal</th>";
+        html += "</tr>";
+        for (var resIndex = 0; resIndex < map.resourceGoal.length; resIndex++) {
+            var resource = map.resourceGoal[resIndex];
+            html += "<tr>";
+            html += "   <td>"+formatStrorage(resource)+"<td>";
+            html += "</tr>";
+        }
+        html += "</table>";
+
+        $('#goal').html(html);
     }
 
     function clear() {

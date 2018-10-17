@@ -1,3 +1,5 @@
+"use strict";
+
 function Gui() {
 
     function doIt() {
@@ -31,11 +33,7 @@ function Gui() {
         ailurusApi.playerContext(function (response) {
             //console.log(response);
             playerContext = response;
-            clear();
-            drawMainBuilding(map.items[0].position);
-            drawMine(map.items[1].position);
-            drawDrone(playerContext.drones[0].currentPosition);
-            drawDrone(playerContext.drones[1].currentPosition);
+            fulgensMap.drawMap(map, playerContext);
             displayStatsDrones(playerContext.drones);
             displayPlayerContext(playerContext);
             $('#lastUpdate').html('Last update: ' + formatDate(new Date()));
@@ -72,8 +70,8 @@ function Gui() {
 
     function formatProgress(num){
         var s =  Math.round(num*100);
-        return '<div style="width:100px; background-color: white">' +
-            '<div style="width:'+s+'px; background-color: blue">'+s+' %</div>' +
+        return '<div class="progressBar">' +
+            '<div class="progressBarIn" style="width:'+s+'px;">'+s+'&nbsp;%</div>' +
             '</div>';
     }
 
@@ -169,26 +167,6 @@ function Gui() {
         $('#goal').html(html);
     }
 
-    function clear() {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, 100, 100);
-    }
-
-    function drawMainBuilding(coord){
-        ctx.fillStyle = 'green';
-        ctx.fillRect(coord.x, coord.y, 1, 1);
-    }
-
-    function drawMine(coord){
-        ctx.fillStyle = 'red';
-        ctx.fillRect(coord.x, coord.y, 1, 1);
-    }
-
-    function drawDrone(coord){
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(coord.x, coord.y, 1, 1);
-    }
-
     function run() {
         Fulgens.clearAll();
         var code = $('#code').val();
@@ -232,9 +210,9 @@ function Gui() {
     var map = {};
     var playerContext = {};
     var ailurusApi = {};
+    var fulgensMap = new FulgensMap('canvas');
 
     $('#gui').hide();
-    var ctx = document.getElementById('canvas').getContext('2d');
     document.getElementById('doIt').onclick = doIt;
     document.getElementById('stop').onclick = stop;
     document.getElementById('run').onclick = run;

@@ -1,3 +1,5 @@
+//"use strict";
+
 Fulgens = {};
 Fulgens.timeoutIDs = [];
 Fulgens.intervalIDs = [];

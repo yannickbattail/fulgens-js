@@ -3,7 +3,7 @@
 function AilurusMockedApi(url, playerName, pass) {
 }
 
-AilurusMockedApi.prototype.instructions = function (instructions, success) {
+AilurusMockedApi.prototype.syncInstructions = function (instructions) {
     var instructionsResult = [
         "ok, mocked instruction1",
         "ok, mocked instruction2"
@@ -13,9 +13,14 @@ AilurusMockedApi.prototype.instructions = function (instructions, success) {
         success(instructionsResult);
     }, 1000);
 }
+AilurusMockedApi.prototype.instructions = function (instructions, success, error) {
+    setTimeout(function() {
+        success(AilurusMockedApi.syncInstructions());
+    }, 1000);
+}
 
-AilurusMockedApi.prototype.playerContext = function (success) {
-    var playerCtx = {
+AilurusMockedApi.prototype.syncPlayerContext = function () {
+    return {
         "drones": [
             {
                 "name": "Drone_1",
@@ -45,49 +50,21 @@ AilurusMockedApi.prototype.playerContext = function (success) {
         "playerName": "RedPanda",
         "resources": []
     };
-    setTimeout(function() {
-        success(playerCtx);
-    }, 1000);
 }
 
+AilurusMockedApi.prototype.playerContext = function (success, error) {
+    setTimeout(function() {
+        success(AilurusMockedApi.syncPlayerContext());
+    }, 1000);
+}
 AilurusMockedApi.prototype.createPlayer = function (success) {
-    var playerCtx = {
-        "drones": [
-            {
-                "name": "Drone_1",
-                "lastInstruction": null,
-                "currentPosition": {
-                    "x": 1,
-                    "y": 1
-                },
-                "state": 1,
-                "speed": 1,
-                "storageSize": 10,
-                "storage": null
-            },
-            {
-                "name": "Drone_2",
-                "lastInstruction": null,
-                "currentPosition": {
-                    "x": 1,
-                    "y": 1
-                },
-                "state": 1,
-                "speed": 1,
-                "storageSize": 10,
-                "storage": null
-            }
-        ],
-        "playerName": "RedPanda",
-        "resources": []
-    };
     setTimeout(function() {
-        success(playerCtx);
+        success(AilurusMockedApi.syncPlayerContext());
     }, 1000);
 }
 
-AilurusMockedApi.prototype.map = function (success) {
-    var map = {
+AilurusMockedApi.prototype.syncMap = function (success) {
+    return {
         "name": "lvl1",
         "dimensions": {
             "item1": {
@@ -123,7 +100,10 @@ AilurusMockedApi.prototype.map = function (success) {
             }
         ]
     };
+}
+
+AilurusMockedApi.prototype.map = function (success, error) {
     setTimeout(function() {
-        success(map);
+        success(AilurusMockedApi.syncMap());
     }, 1000);
 }

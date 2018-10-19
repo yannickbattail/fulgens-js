@@ -33,3 +33,13 @@ Fulgens.clearAll = function() {
     }
     Fulgens.intervalIDs = [];
 };
+/*
+Fulgens.sleep = await function(miliseconds) {
+    var sleeping = function(miliseconds) {
+        return new Promise(resolve => setTimeout(resolve, miliseconds));
+    };
+    console.log('Taking a break...');
+    await sleeping(miliseconds);
+    console.log('Two seconds later');
+};
+*/

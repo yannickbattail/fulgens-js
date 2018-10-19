@@ -12,26 +12,33 @@ function FulgensMap(canvasId) {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    function drawMainBuilding(coord){
+    function drawFactory(factory){
         ctx.fillStyle = 'green';
-        ctx.fillRect(coord.x, coord.y, 1, 1);
+        ctx.fillRect(factory.position.x, factory.position.y, 1, 1);
     }
 
-    function drawMine(coord){
+    function drawMine(mine){
         ctx.fillStyle = 'red';
-        ctx.fillRect(coord.x, coord.y, 1, 1);
+        ctx.fillRect(mine.position.x, mine.position.y, 1, 1);
     }
 
-    function drawDrone(coord){
+    function drawDrone(drone){
         ctx.fillStyle = 'blue';
-        ctx.fillRect(coord.x, coord.y, 1, 1);
+        ctx.fillRect(drone.currentPosition.x, drone.currentPosition.y, 1, 1);
     }
 
     this.drawMap = function(map, playerContext) {
         clear();
-        drawMainBuilding(map.items[0].position);
-        drawMine(map.items[1].position);
-        drawDrone(playerContext.drones[0].currentPosition);
-        drawDrone(playerContext.drones[1].currentPosition);
+        map.factories.forEach(factory => {
+            drawFactory(factory);
+        });
+        
+        map.mines.forEach(mine => {
+            drawMine(mine);
+        });
+
+        playerContext.drones.forEach(drone => {
+            drawDrone(drone);
+        });
     }
 };

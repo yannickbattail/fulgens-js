@@ -1,132 +1,338 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Ailurus</title>
-    <link rel="icon" href="img/fulgens.svg">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/ailurus-api.js"></script>
-    <script src="js/ailurus-mocked-api.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/fulgens.js"></script>
-    <script src="js/FulgensMap.js"></script>
-    <style>
-        .progressBar {
-            border-style: solid;
-            border-width: 1px;
-            border-color: gray;
-            border-radius: 4px;
-            width: 100px;
-            background-color: white;
-        }
-        .progressBarIn {
-            border-style: none;
-            border-width: 0px;
-            border-radius: 4px;
-            background-color: blue;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Blockly Demo: Fixed Blockly</title>
+  <script src="blockly_compressed.js"></script>
+  <script src="blocks_compressed.js"></script>
+  <script src="javascript_compressed.js"></script>
+  <script src="msg/js/en.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
 </head>
-<body style="background-color: ghostwhite">
-    <h2><img src="img/fulgens.svg" alt="fulgens icon" width="50" height="50" /> Ailurus fulgens</h2>
-    <div id="loginBox">
-        <table>
-            <tr>
-                <th><label for="playerName">Player name</label></th>
-                <td><input type="text" id="playerName" /></td>
-            </tr>
-            <tr>
-                <th><label for="pass">Pass</label></th>
-                <td><input type="password" id="pass" /></td>
-            </tr>
-            <tr>
-                <th><label for="hurle">URL</label></th>
-                <td><input type="text" id="hurle" value="http://localhost:61218/" /></td>
-            </tr>
-            <tr>
-                <td colspan="2" id="loginMsg"></td>
-            </tr>
-            <tr>
-                <th><input type="button" id="login" value="Login" /></th>
-                <td><input type="button" id="createPlayer" value="create player" /></td>
-            </tr>
-        </table>
-    </div>
+<body>
 
-    <div id="gui">
-        <canvas id="canvas" width="100" height="100"></canvas>
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  <textarea id="textarea" cols="80" rows="80"></textarea>
+	
+  <xml id="toolbox" style="display: none">
+    <category name="LOGIC" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+    <category name="LOOPS" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="MATH" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+    </category>
+    <category name="TEXT" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="LISTS" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <shadow type="text">
+            <field name="TEXT">,</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_sort"></block>
+    </category>
+    <category name="COLOUR" colour="%{BKY_COLOUR_HUE}">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb">
+        <value name="RED">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+        <value name="GREEN">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="BLUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="colour_blend">
+        <value name="COLOUR1">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+        <value name="COLOUR2">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#3333ff</field>
+          </shadow>
+        </value>
+        <value name="RATIO">
+          <shadow type="math_number">
+            <field name="NUM">0.5</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <sep></sep>
+    <category name="VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="FUNCTIONS" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+  </xml>
 
-        <div id="stats">
-
-        </div>
-        <div id="goal">
-
-        </div>
-        <div id="playerContext">
-
-        </div>
-        
-        <br />
-        Drone: <select id="Drone">
-            <option>Drone_1</option>
-            <option>Drone_2</option>
-        </select>
-        <br /> 
-        Action: <select id="TYPE">
-            <option value="Collect">Collect</option>
-            <option value="Unload">Unload</option>
-            <option value="MoveTo">Move to</option>
-        </select>
-        <br />
-        <select id="Destination">
-            <option value="2,2">Factory</option>
-            <option value="98,98">Gold Mine</option>
-        </select>
-        <br />
-        <input type="button" id="doIt" value="Do it!" />
-        <br />
-        <div id="out">
-            
-        </div>
-        <div id="lastUpdate">
-            Last update:
-        </div>
-        <div>
-            <textarea id="code" cols="80" rows="15">
-
-var instruction = {};
-instruction['TYPE'] = 'MoveTo';
-instruction['DroneName'] = 'Drone_1';
-instruction['Destination'] = {"X":98, "Y":98};
-
-var instructionList = [instruction];
-ailurusApi.instructions(instructionList, function (response) {
-    $('#out').html(response);
-});
-
-function logResult(response) {
-    $('#out').html(response);
+  <script>
+var workspace = Blockly.inject('blocklyDiv',
+	{media: './media/',
+	toolbox: document.getElementById('toolbox')});
+ 
+function myUpdateFunction(event) {
+  var code = Blockly.JavaScript.workspaceToCode(workspace);
+  document.getElementById('textarea').value = code;
 }
+workspace.addChangeListener(myUpdateFunction);
+  </script>
 
-function collectDrone_1()
-{
-    var instruction = {
-        'TYPE': 'Collect',
-        'DroneName': 'Drone_1',
-        'Destination': null
-    };
-    ailurusApi.instructions([instruction], logResult);
-}
-
-Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
-
-            </textarea>
-        </div>
-        <input type="button" id="run" value="run" />
-        <input type="button" id="stop" value="stop" />
-    </div>
 </body>
-<script>
-    Gui();
-</script>
 </html>

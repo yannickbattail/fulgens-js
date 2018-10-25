@@ -177,6 +177,7 @@ function Gui() {
         Fulgens.clearAll();
     }
     function createPlayer() {
+        //for tests use class: AilurusMockedApi
         //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
         //    $('#playerName').val(), $('#pass').val());
         ailurusApi = new AilurusApi("http://localhost:61218/",
@@ -193,6 +194,8 @@ function Gui() {
     }
     function login() {
         //for tests use class: AilurusMockedApi
+        //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
+        //    $('#playerName').val(), $('#pass').val());
         ailurusApi = new AilurusApi($('#hurle').val(),
             $('#playerName').val(), $('#pass').val());
 

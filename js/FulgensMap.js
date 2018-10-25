@@ -5,34 +5,70 @@ function FulgensMap(canvasId) {
     var id = canvasId;
     var canvas = document.getElementById(id);
     var ctx = canvas.getContext('2d');
+    var squareSize = 3;
 
-    function clear() {
+    var images = [];
+    images['drone'] = new Image();
+    images['drone'].src = 'img/drone24x24.png';
+    images['factory'] = new Image();
+    images['factory'].src = 'img/factory32x32.png';
+    images['gold-mine'] = new Image();
+    images['gold-mine'].src = 'img/gold-mine32x32.png';
+
+    /**
+     * translate game coord to displayed map coord
+     * @param {object} coord 
+     */
+    function trlCoord(coord){
+        return {
+            "x":coord.x * squareSize + squareSize / 2,
+            "y":coord.y * squareSize + squareSize / 2,
+        };
+    }
+
+    function drawImg(imgName, coord) {
+        var i = images[imgName];
+        ctx.drawImage(i, coord.x - i.width / 2, coord.y - i.height / 2);
+    }
+
+    function clear(map) {
+        var mapDim = map.dimensions.item2;
         ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, 100, 100);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        canvas.width = mapDim.x * squareSize;
+        canvas.height = mapDim.y * squareSize;
+        //ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
     function drawFactory(factory){
-        ctx.fillStyle = 'green';
-        ctx.fillRect(factory.position.x, factory.position.y, 1, 1);
+        var pos = trlCoord(factory.position);
+        //ctx.fillStyle = 'green';
+        //ctx.fillRect(pos.x, pos.y, squareSize, squareSize);
+        drawImg('factory', pos);
     }
 
     function drawMine(mine){
-        ctx.fillStyle = 'red';
-        ctx.fillRect(mine.position.x, mine.position.y, 1, 1);
+        var pos = trlCoord(mine.position);
+        //ctx.fillStyle = 'red';
+        //ctx.fillRect(pos.x, pos.y, squareSize, squareSize);
+        drawImg('gold-mine', pos);
     }
 
     function drawDrone(drone){
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(drone.currentPosition.x, drone.currentPosition.y, 1, 1);
+        var pos = trlCoord(drone.currentPosition);
+        //ctx.fillStyle = 'blue';
+        //ctx.fillRect(pos.x, pos.y, squareSize, squareSize);
+        drawImg('drone', pos);
     }
 
     this.drawMap = function(map, playerContext) {
-        clear();
+        clear(map);
         map.factories.forEach(factory => {
             drawFactory(factory);
         });
-        
+
         map.mines.forEach(mine => {
             drawMine(mine);
         });
@@ -40,5 +76,5 @@ function FulgensMap(canvasId) {
         playerContext.drones.forEach(drone => {
             drawDrone(drone);
         });
-    }
-};
+    };
+}

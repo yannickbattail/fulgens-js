@@ -12,12 +12,13 @@ AilurusMockedApi.prototype.syncInstructions = function (instructions) {
         console.log(instructionsResult);
         success(instructionsResult);
     }, 1000);
-}
+};
 AilurusMockedApi.prototype.instructions = function (instructions, success, error) {
+    var that = this;
     setTimeout(function() {
-        success(AilurusMockedApi.syncInstructions());
+        success(that.syncInstructions());
     }, 1000);
-}
+};
 
 AilurusMockedApi.prototype.syncPlayerContext = function () {
     return {
@@ -50,18 +51,20 @@ AilurusMockedApi.prototype.syncPlayerContext = function () {
         "playerName": "RedPanda",
         "resources": []
     };
-}
+};
 
 AilurusMockedApi.prototype.playerContext = function (success, error) {
+    var that = this;
     setTimeout(function() {
-        success(AilurusMockedApi.syncPlayerContext());
+        success(that.syncPlayerContext());
     }, 1000);
-}
+};
 AilurusMockedApi.prototype.createPlayer = function (success) {
+    var that = this;
     setTimeout(function() {
-        success(AilurusMockedApi.syncPlayerContext());
+        success(that.syncPlayerContext());
     }, 1000);
-}
+};
 
 AilurusMockedApi.prototype.syncMap = function (success) {
     return {
@@ -80,7 +83,13 @@ AilurusMockedApi.prototype.syncMap = function (success) {
             "x": 1,
             "y": 1
         },
-        "items": [
+        "resourceGoal": [
+            {
+                "quantity": 30,
+                "resource": "gold"
+            }
+        ],
+        "mines": [
             {
                 "type": "MainBuilding",
                 "name": "Home",
@@ -88,7 +97,9 @@ AilurusMockedApi.prototype.syncMap = function (success) {
                     "x": 2,
                     "y": 2
                 }
-            },
+            }
+        ],
+        "factories": [
             {
                 "type": "Mine",
                 "name": "Gold Mine",
@@ -100,10 +111,11 @@ AilurusMockedApi.prototype.syncMap = function (success) {
             }
         ]
     };
-}
+};
 
 AilurusMockedApi.prototype.map = function (success, error) {
+    var that = this;
     setTimeout(function() {
-        success(AilurusMockedApi.syncMap());
+        success(that.syncMap());
     }, 1000);
-}
+};

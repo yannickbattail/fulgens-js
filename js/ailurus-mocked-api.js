@@ -27,8 +27,8 @@ AilurusMockedApi.prototype.syncPlayerContext = function () {
                 "name": "Drone_1",
                 "lastInstruction": null,
                 "currentPosition": {
-                    "x": 1,
-                    "y": 1
+                    "x": 20,
+                    "y": 10
                 },
                 "state": 1,
                 "speed": 1,
@@ -39,8 +39,8 @@ AilurusMockedApi.prototype.syncPlayerContext = function () {
                 "name": "Drone_2",
                 "lastInstruction": null,
                 "currentPosition": {
-                    "x": 1,
-                    "y": 1
+                    "x": 10,
+                    "y": 15
                 },
                 "state": 1,
                 "speed": 1,
@@ -75,13 +75,13 @@ AilurusMockedApi.prototype.syncMap = function (success) {
                 "y": 0
             },
             "item2": {
-                "x": 100,
-                "y": 100
+                "x": 50,
+                "y": 50
             }
         },
         "droneSpawnPoint": {
-            "x": 1,
-            "y": 1
+            "x": 15,
+            "y": 10
         },
         "resourceGoal": [
             {
@@ -91,21 +91,21 @@ AilurusMockedApi.prototype.syncMap = function (success) {
         ],
         "mines": [
             {
-                "type": "MainBuilding",
+                "type": "Mine",
                 "name": "Home",
                 "position": {
-                    "x": 2,
-                    "y": 2
+                    "x": 45,
+                    "y": 45
                 }
             }
         ],
         "factories": [
             {
-                "type": "Mine",
-                "name": "Gold Mine",
+                "type": "Factory",
+                "name": "Factory",
                 "position": {
-                    "x": 98,
-                    "y": 98
+                    "x": 4,
+                    "y": 4
                 },
                 "resourceType": 0
             }

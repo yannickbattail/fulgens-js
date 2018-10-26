@@ -8,6 +8,8 @@ function FulgensMap(canvasId) {
     var squareSize = 3;
 
     var images = [];
+    images['map'] = new Image();
+    images['map'].src = 'img/ground.jpg';
     images['drone'] = new Image();
     images['drone'].src = 'img/drone24x24.png';
     images['factory'] = new Image();
@@ -33,13 +35,9 @@ function FulgensMap(canvasId) {
 
     function clear(map) {
         var mapDim = map.dimensions.item2;
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         canvas.width = mapDim.x * squareSize;
         canvas.height = mapDim.y * squareSize;
-        //ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(images['map'], 0, 0);
     }
 
     function drawFactory(factory){

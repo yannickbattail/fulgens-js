@@ -16,8 +16,8 @@ function AilurusApi(url, playerName, pass) {
 };
 
 /**
- * @param {object} instructions
- * @returns {Array.<string>} status message of each instructions
+ * @param {Array} Array of instructions
+ * @returns {Array} status message of each instructions
  */
 AilurusApi.prototype.syncInstructions = function (instructions) {
     var instructionSet = {
@@ -39,8 +39,8 @@ AilurusApi.prototype.syncInstructions = function (instructions) {
 
 /**
  * @param {object} instructions
- * @param {function.<Array.<string>>} success
- * @param {function.<string>} error
+ * @param {function} success
+ * @param {function} error
  */
 AilurusApi.prototype.instructions = function (instructions, success, error) {
     var instructionSet = {
@@ -63,6 +63,7 @@ AilurusApi.prototype.instructions = function (instructions, success, error) {
 
 /**
  * @returns {object} PlayerContext
+ * @deprecated use playerContext()
  */
 AilurusApi.prototype.syncPlayerContext = function () {
     var login = {
@@ -81,8 +82,8 @@ AilurusApi.prototype.syncPlayerContext = function () {
 
 /**
  * 
- * @param {function.<Array.<string>>} success
- * @param {function.<string>} error
+ * @param {function} success
+ * @param {function} error
  */
 AilurusApi.prototype.playerContext = function (success, error) {
     var login = {
@@ -102,8 +103,8 @@ AilurusApi.prototype.playerContext = function (success, error) {
 
 /**
  * 
- * @param {function.<Array.<string>>} success
- * @param {function.<string>} error
+ * @param {function} success
+ * @param {function} error
  */
 AilurusApi.prototype.createPlayer = function (success, error) {
     var login = {
@@ -123,6 +124,7 @@ AilurusApi.prototype.createPlayer = function (success, error) {
 
 /**
  * @returns {object} the map
+ * @deprecated use map()
  */
 AilurusApi.prototype.syncMap = function () {
     return $.ajax({
@@ -136,8 +138,8 @@ AilurusApi.prototype.syncMap = function () {
 
 /**
  * 
- * @param {function.<Array.<string>>} success
- * @param {function.<string>} error
+ * @param {function} success
+ * @param {function} error
  */
 AilurusApi.prototype.map = function (success, error) {
     $.ajax({

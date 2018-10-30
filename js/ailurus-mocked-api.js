@@ -22,34 +22,65 @@ AilurusMockedApi.prototype.instructions = function (instructions, success, error
 
 AilurusMockedApi.prototype.syncPlayerContext = function () {
     return {
-        "drones": [
-            {
+        "drones": [{
                 "name": "Drone_1",
-                "lastInstruction": null,
-                "currentPosition": {
-                    "x": 20,
-                    "y": 10
+                "lastInstruction": {
+                    "destination": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "distance": 60.811183182043088,
+                    "duration": 60.811183182043088,
+                    "endAt": "2018-10-30T18:16:18.7572593+01:00",
+                    "type": "MoveTo",
+                    "startedAt": "2018-10-30T18:15:17.9462593+01:00",
+                    "progression": 1.0,
+                    "abortedAt": null,
+                    "isAborted": false
                 },
-                "state": 1,
-                "speed": 1,
+                "currentPosition": {
+                    "x": 2,
+                    "y": 2
+                },
+                "state": "WaitingForOrders",
+                "speed": 1.0,
                 "storageSize": 10,
-                "storage": null
-            },
-            {
+                "storage": {
+                    "resource": "Gold",
+                    "quantity": 10
+                }
+            }, {
                 "name": "Drone_2",
-                "lastInstruction": null,
-                "currentPosition": {
-                    "x": 10,
-                    "y": 15
+                "lastInstruction": {
+                    "destination": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "distance": 60.811183182043088,
+                    "duration": 60.811183182043088,
+                    "endAt": "2018-10-30T18:16:14.6029791+01:00",
+                    "type": "MoveTo",
+                    "startedAt": "2018-10-30T18:15:13.7919791+01:00",
+                    "progression": 1.0,
+                    "abortedAt": null,
+                    "isAborted": false
                 },
-                "state": 1,
-                "speed": 1,
+                "currentPosition": {
+                    "x": 2,
+                    "y": 2
+                },
+                "state": "WaitingForOrders",
+                "speed": 1.0,
                 "storageSize": 10,
-                "storage": null
+                "storage": {
+                    "resource": "Gold",
+                    "quantity": 10
+                }
             }
         ],
-        "playerName": "RedPanda",
-        "resources": []
+        "playerName": "c",
+        "resources": [],
+        "goalAchieved": false
     };
 };
 
@@ -80,34 +111,31 @@ AilurusMockedApi.prototype.syncMap = function (success) {
             }
         },
         "droneSpawnPoint": {
-            "x": 15,
+            "x": 20,
             "y": 10
         },
-        "resourceGoal": [
-            {
-                "quantity": 30,
-                "resource": "gold"
-            }
-        ],
-        "mines": [
-            {
+        "mines": [{
                 "type": "Mine",
-                "name": "Home",
+                "name": "Gold Mine",
                 "position": {
                     "x": 45,
                     "y": 45
-                }
+                },
+                "resourceType": "Gold"
             }
         ],
-        "factories": [
-            {
+        "factories": [{
                 "type": "Factory",
-                "name": "Factory",
+                "name": "Home",
                 "position": {
                     "x": 4,
                     "y": 4
-                },
-                "resourceType": 0
+                }
+            }
+        ],
+        "resourceGoal": [{
+                "resource": "Gold",
+                "quantity": 30
             }
         ]
     };

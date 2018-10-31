@@ -79,7 +79,12 @@ AilurusMockedApi.prototype.syncPlayerContext = function () {
             }
         ],
         "playerName": "c",
-        "resources": [],
+        "resources": [
+            {
+                "resource": "Gold",
+                "quantity": 10
+            }
+        ],
         "goalAchieved": false
     };
 };

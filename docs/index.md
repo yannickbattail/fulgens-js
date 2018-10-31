@@ -1,6 +1,6 @@
 # Fulgens
 
-## Code your AI
+## Ailurus Api
 
 ### get the map
 
@@ -8,7 +8,7 @@
 AilurusApi.map(success);
 ```
 
-*success* is a function that take the maps as parameter. This function is called when the recieved with success from the Ailurus
+*success* is a function that take the maps as parameter. This function is called when the received with success from the Ailurus
 
 Example:
 ```javascript
@@ -64,13 +64,13 @@ It return and object that describe the map and the item it contain.
 
 ```
 
-droneSpawnPoint: is the point where new drones starts
+- droneSpawnPoint: is the point where new drones starts
 
-resourceGoal: a list of resource type and quantity to validate the level
+- resourceGoal: a list of resource type and quantity to validate the level
 
-mines: list of mines with their positions and type of resources
+- mines: list of mines with their positions and type of resources
 
-factories: list of factories with their positions
+- factories: list of factories with their positions
 
 ### get the player context
 
@@ -147,9 +147,133 @@ It return and object that describe the player and its drones.
 			}
 		}
 	],
-	"playerName": "c",
-	"resources": [],
+	"playerName": "RedPanda",
+	"resources": [
+		{
+			"resource": "Gold",
+			"quantity": 10
+		}
+	],
 	"goalAchieved": false
 }
+```
+
+### send instructions to drones
+
+```javascript
+AilurusApi.instructions(instructions, success);
+```
+
+success is a function that take the playerContext as parameter. This function is called when the recieved with success from the Ailurus
+
+Example:
+```javascript
+var instructions = [
+	{
+		'TYPE': 'Collect',
+		'DroneName': 'Drone_1',
+		'Destination': null
+	},
+	{
+		'TYPE': 'Unload',
+		'DroneName': 'Drone_2',
+		'Destination': null
+	},
+	{
+		'TYPE': 'MoveTo',
+		'DroneName': 'Drone_3',
+		'Destination': {"X":45, "Y":45}
+	},
+];
+AilurusApi.instructions(instructions, function(instructionsStatus){
+  console.log(instructionsStatus);
+});
+```
+
+It return an Array: a status message for each instructions.
+
+#### instruction
+
+- TYPE: can be 'Collect', 'Unload' or 'MoveTo'
+- DroneName: the drone the instruction is for
+- Destination: for an instruction of type MoveTo, it is the coordinate X,Y of the destination
+
+## Fulgens Api
+
+
+
+## example of IA
+
+```javascript
+function logResult(response) {
+    console.log(response);
+}
+var minePosition = {x:0,y:0;};
+var factoryPosition = {x:0,y:0;};
+
+AilurusApi.map(function(theMap){
+  console.log(theMap);
+  minePosition = theMap.mines[0].position;
+  factoryPosition = theMap.factories[0].position;
+});
+
+function Collect(drone)
+{
+    var instruction = {
+        'TYPE': 'Collect',
+        'DroneName': drone,
+        'Destination': null
+    };
+    ailurusApi.instructions([instruction], logResult);
+}
+function MoveToMine(drone)
+{
+    var instruction = {
+        'TYPE': 'MoveTo',
+        'DroneName': drone,
+        'Destination': minePosition
+    };
+    ailurusApi.instructions([instruction], logResult);
+}
+function MoveToFactory(drone)
+{
+    var instruction = {
+        'TYPE': 'MoveTo',
+        'DroneName': drone,
+        'Destination': factoryPosition
+    };
+    ailurusApi.instructions([instruction], logResult);
+}
+function Unload(drone)
+{
+    var instruction = {
+        'TYPE': 'Unload',
+        'DroneName': drone,
+        'Destination': null
+    };
+    ailurusApi.instructions([instruction], logResult);
+}
+
+function drone1Collect(drone){
+    Collect('Drone_1');
+}
+function drone1MoveToMine(drone){
+    MoveMoveToMine('Drone_1');
+}
+function drone1MoveToFactory(drone){
+    MoveToFactory('Drone_1');
+}
+function drone1Unload(drone){
+    Unload('Drone_1');
+}
+
+
+drone1MoveToMine();
+// in 2min drone1 will Collect
+Fulgens.setTimeout(drone1Collect, 2*60*1000); // 2min in ms
+ // in 2min and 10s drone1 will Move To Factory
+Fulgens.setTimeout(drone1MoveToFactory, 2*60*1000 + 10*1000);
+ // in 2min and 10s and 2min drone1 will Unload
+Fulgens.setTimeout(drone1Unload, 2*60*1000 + 10*1000 + 2*60*1000);
 
 ```

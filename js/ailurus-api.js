@@ -18,6 +18,7 @@ function AilurusApi(url, playerName, pass) {
 /**
  * @param {Array} Array of instructions
  * @returns {Array} status message of each instructions
+ * @deprecated use instructions()
  */
 AilurusApi.prototype.syncInstructions = function (instructions) {
     var instructionSet = {

@@ -5,12 +5,12 @@
 
 * [AilurusApi](#AilurusApi)
     * [new AilurusApi(url, playerName, pass)](#new_AilurusApi_new)
-    * [.syncInstructions(Array)](#AilurusApi+syncInstructions) ⇒ <code>Array</code>
+    * ~~[.syncInstructions(Array)](#AilurusApi+syncInstructions) ⇒ <code>Array</code>~~
     * [.instructions(instructions, success, error)](#AilurusApi+instructions)
-    * [.syncPlayerContext()](#AilurusApi+syncPlayerContext) ⇒ <code>object</code>
+    * ~~[.syncPlayerContext()](#AilurusApi+syncPlayerContext) ⇒ <code>object</code>~~
     * [.playerContext(success, error)](#AilurusApi+playerContext)
     * [.createPlayer(success, error)](#AilurusApi+createPlayer)
-    * [.syncMap()](#AilurusApi+syncMap) ⇒ <code>object</code>
+    * ~~[.syncMap()](#AilurusApi+syncMap) ⇒ <code>object</code>~~
     * [.map(success, error)](#AilurusApi+map)
 
 <a name="new_AilurusApi_new"></a>
@@ -25,7 +25,9 @@
 
 <a name="AilurusApi+syncInstructions"></a>
 
-### ailurusApi.syncInstructions(Array) ⇒ <code>Array</code>
+### ~~ailurusApi.syncInstructions(Array) ⇒ <code>Array</code>~~
+***Deprecated***
+
 **Kind**: instance method of [<code>AilurusApi</code>](#AilurusApi)  
 **Returns**: <code>Array</code> - status message of each instructions  
 
@@ -46,7 +48,9 @@
 
 <a name="AilurusApi+syncPlayerContext"></a>
 
-### ailurusApi.syncPlayerContext() ⇒ <code>object</code>
+### ~~ailurusApi.syncPlayerContext() ⇒ <code>object</code>~~
+***Deprecated***
+
 **Kind**: instance method of [<code>AilurusApi</code>](#AilurusApi)  
 **Returns**: <code>object</code> - PlayerContext  
 <a name="AilurusApi+playerContext"></a>
@@ -71,7 +75,9 @@
 
 <a name="AilurusApi+syncMap"></a>
 
-### ailurusApi.syncMap() ⇒ <code>object</code>
+### ~~ailurusApi.syncMap() ⇒ <code>object</code>~~
+***Deprecated***
+
 **Kind**: instance method of [<code>AilurusApi</code>](#AilurusApi)  
 **Returns**: <code>object</code> - the map  
 <a name="AilurusApi+map"></a>

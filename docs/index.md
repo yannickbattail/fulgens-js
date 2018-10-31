@@ -208,13 +208,14 @@ It return an Array: a status message for each instructions.
 function logResult(response) {
     console.log(response);
 }
-var minePosition = {x:0,y:0;};
-var factoryPosition = {x:0,y:0;};
+var minePosition = {x:0,y:0};
+var factoryPosition = {x:0,y:0};
 
-AilurusApi.map(function(theMap){
+ailurusApi.map(function(theMap){
   console.log(theMap);
   minePosition = theMap.mines[0].position;
   factoryPosition = theMap.factories[0].position;
+  start();
 });
 
 function Collect(drone)
@@ -258,7 +259,7 @@ function drone1Collect(drone){
     Collect('Drone_1');
 }
 function drone1MoveToMine(drone){
-    MoveMoveToMine('Drone_1');
+    MoveToMine('Drone_1');
 }
 function drone1MoveToFactory(drone){
     MoveToFactory('Drone_1');
@@ -267,13 +268,36 @@ function drone1Unload(drone){
     Unload('Drone_1');
 }
 
+function drone2Collect(drone){
+    Collect('Drone_2');
+}
+function drone2MoveToMine(drone){
+    MoveToMine('Drone_2');
+}
+function drone2MoveToFactory(drone){
+    MoveToFactory('Drone_2');
+}
+function drone2Unload(drone){
+    Unload('Drone_2');
+}
 
-drone1MoveToMine();
-// in 2min drone1 will Collect
-Fulgens.setTimeout(drone1Collect, 2*60*1000); // 2min in ms
- // in 2min and 10s drone1 will Move To Factory
-Fulgens.setTimeout(drone1MoveToFactory, 2*60*1000 + 10*1000);
- // in 2min and 10s and 2min drone1 will Unload
-Fulgens.setTimeout(drone1Unload, 2*60*1000 + 10*1000 + 2*60*1000);
+function start() {
+
+    drone1MoveToMine();
+    // in 2min drone1 will Collect
+    Fulgens.setTimeout(drone1Collect, 2*60*1000); // 2min in ms
+    // in 2min and 10s drone1 will Move To Factory
+    Fulgens.setTimeout(drone1MoveToFactory, 2*60*1000 + 10*1000);
+    // in 2min and 10s and 2min drone1 will Unload
+    Fulgens.setTimeout(drone1Unload, 2*60*1000 + 10*1000 + 2*60*1000);
+
+    drone2MoveToMine();
+    // in 2min drone2 will Collect
+    Fulgens.setTimeout(drone2Collect, 2*60*1000); // 2min in ms
+    // in 2min and 10s drone2 will Move To Factory
+    Fulgens.setTimeout(drone2MoveToFactory, 2*60*1000 + 10*1000);
+    // in 2min and 10s and 2min drone2 will Unload
+    Fulgens.setTimeout(drone2Unload, 2*60*1000 + 10*1000 + 2*60*1000);
+}
 
 ```

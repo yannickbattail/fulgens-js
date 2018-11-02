@@ -119,6 +119,7 @@ AilurusMockedApi.prototype.createPlayer = function (success) {
 AilurusMockedApi.prototype.syncMap = function (success) {
     return {
         "name": "lvl1",
+        "description": "mocked map",
         "dimensions": {
             "item1": {
                 "x": 0,

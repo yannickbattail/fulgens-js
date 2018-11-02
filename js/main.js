@@ -152,7 +152,8 @@ function Gui() {
     }
 
     function displayGoal(map) {
-        var html = "<table>";
+        var html = '<div id="mapDescription">'+map.description+"</div>";
+        html += "<table>";
         html += "<tr>";
         html += "   <th>Goal</th>";
         html += "</tr>";

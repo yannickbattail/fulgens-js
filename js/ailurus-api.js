@@ -123,14 +123,38 @@ AilurusApi.prototype.createPlayer = function (success, error) {
     });
 };
 
+AilurusApi.prototype.changeLevel = function (level, success, error) {
+    var login = {
+        "Login": {
+            "PlayerName": this.playerName,
+            "Pass": this.pass
+        },
+        "level": level
+    };
+    $.ajax({
+        "type": "POST",
+        "url": this.url + "changeLevel",
+        "data": JSON.stringify(login),
+        "contentType": 'application/json',
+        "dataType": 'json',
+        "success": success,
+        "error" : error
+    });
+};
+
 /**
  * @returns {object} the map
  * @deprecated use map()
  */
 AilurusApi.prototype.syncMap = function () {
+    var login = {
+        "PlayerName": this.playerName,
+        "Pass": this.pass
+    };
     return $.ajax({
-        "type": "GET",
+        "type": "POST",
         "url": this.url + "map",
+        "data": JSON.stringify(login),
         "contentType": 'application/json',
         "dataType": 'json',
         "async": false
@@ -143,9 +167,14 @@ AilurusApi.prototype.syncMap = function () {
  * @param {function} error
  */
 AilurusApi.prototype.map = function (success, error) {
+    var login = {
+        "PlayerName": this.playerName,
+        "Pass": this.pass
+    };
     $.ajax({
-        "type": "GET",
+        "type": "POST",
         "url": this.url + "map",
+        "data": JSON.stringify(login),
         "contentType": 'application/json',
         "dataType": 'json',
         "success": success,

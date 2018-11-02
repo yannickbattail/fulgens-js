@@ -299,5 +299,6 @@ function start() {
     // in 2min and 10s and 2min drone2 will Unload
     Fulgens.setTimeout(drone2Unload, 2*60*1000 + 10*1000 + 2*60*1000);
 }
+//ailurusApi.changeLevel(2, console.log, console.log);
 
 ```

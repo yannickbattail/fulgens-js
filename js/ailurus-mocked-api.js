@@ -95,6 +95,20 @@ AilurusMockedApi.prototype.playerContext = function (success, error) {
         success(that.syncPlayerContext());
     }, 1000);
 };
+
+/**
+ * change player level (map)
+ * @param {int} level
+ * @param {function} success
+ * @param {function} error
+ */
+AilurusMockedApi.prototype.changeLevel = function (level, success, error) {
+    var that = this;
+    setTimeout(function() {
+        success(that.syncPlayerContext());
+    }, 1000);
+};
+
 AilurusMockedApi.prototype.createPlayer = function (success) {
     var that = this;
     setTimeout(function() {

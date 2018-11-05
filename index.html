@@ -25,6 +25,29 @@
             border-radius: 4px;
             background-color: blue;
         }
+        .block {
+            border-style: solid;
+            border-width: 1px;
+            border-color: grey;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .collapse {
+            border-style: solid;
+            border-width: 1px;
+            border-color: grey;
+            border-radius: 5px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            font-weight: bold;
+            background-color: #ddd;
+        }
+        .collapse::before {
+            content: "- ";
+        }
+        .collapsed::before {
+            content: "+ ";
+        }
     </style>
 </head>
 <body style="background-color: ghostwhite">
@@ -54,45 +77,71 @@
     </div>
 
     <div id="gui">
-        <canvas id="canvas" width="100" height="100"></canvas>
-
-        <div id="stats">
-
+        <div class="block">
+            <div class="collapse">Map</div>
+            <div id="">
+                    <canvas id="canvas" width="100" height="100"></canvas>
+            </div>
         </div>
-        <div id="goal">
 
+        <div class="block">
+            <div class="collapse">Drones</div>
+            <div id="stats">
+
+            </div>
+            <div id="lastUpdate">
+                Last update:
+            </div>
         </div>
-        <div id="playerContext">
 
+        <div class="block">
+            <div class="collapse">Map/</div>
+            <div id="goal">
+
+            </div>
+        </div>
+
+        <div class="block">
+            <div class="collapse">Player</div>
+            <div id="playerContext">
+
+            </div>
         </div>
         
-        <br />
-        Drone: <select id="Drone">
-            <option>Drone_1</option>
-            <option>Drone_2</option>
-        </select>
-        <br /> 
-        Action: <select id="TYPE">
-            <option value="Collect">Collect</option>
-            <option value="Unload">Unload</option>
-            <option value="MoveTo">Move to</option>
-        </select>
-        <br />
-        <select id="Destination">
-            <option value="2,2">Factory</option>
-            <option value="45,45">Gold Mine</option>
-        </select>
-        <br />
-        <input type="button" id="doIt" value="Do it!" />
-        <br />
-        <div id="out">
-            
+        <div class="block">
+            <div class="collapse">Manual action</div>
+            <div>
+                Drone: <select id="Drone">
+                    <option>Drone_1</option>
+                    <option>Drone_2</option>
+                </select>
+                <br /> 
+                Action: <select id="TYPE">
+                    <option value="Collect">Collect</option>
+                    <option value="Unload">Unload</option>
+                    <option value="MoveTo">Move to</option>
+                </select>
+                <br />
+                <select id="Destination">
+                    <option value="2,2">Factory</option>
+                    <option value="45,45">Gold Mine</option>
+                </select>
+                <br />
+                <input type="button" id="doIt" value="Do it!" />
+            </div>
         </div>
-        <div id="lastUpdate">
-            Last update:
-        </div>
+        <div class="block">
+                <div class="collapse">Output</div>
+                <div id="out">
+                    &nbsp;
+                </div>
+            </div>
         <div>
-            <textarea id="code" cols="80" rows="15">
+
+        <div class="block">
+            <div class="collapse">AI Code</div>
+            <div id="playerContext">
+                <textarea id="code" style="width:100%" rows="60">
 
 var instruction = {};
 instruction['TYPE'] = 'MoveTo';
@@ -121,12 +170,22 @@ function collectDrone_1()
 Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
 
             </textarea>
+            <br />
+            <input type="button" id="run" value="run" />
+            <input type="button" id="stop" value="stop" />
+        
         </div>
-        <input type="button" id="run" value="run" />
-        <input type="button" id="stop" value="stop" />
     </div>
 </body>
 <script>
     Gui();
+
+$(".collapse").click(function () {
+    var header = $(this);
+    var content = header.next();
+    content.slideToggle(500, function () {
+        header.toggleClass('collapsed');
+    });
+});
 </script>
 </html>

@@ -4,74 +4,15 @@
     <meta charset="UTF-8">
     <title>Ailurus</title>
     <link rel="icon" href="img/fulgens.svg">
+    <link rel="stylesheet" type="text/css" href="css/fulgens.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/ailurus-api.js"></script>
     <script src="js/ailurus-mocked-api.js"></script>
     <script src="js/main.js"></script>
     <script src="js/fulgens.js"></script>
     <script src="js/FulgensMap.js"></script>
-    <style>
-.progressBar {
-    border-style: solid;
-    border-width: 1px;
-    border-color: gray;
-    border-radius: 4px;
-    width: 100px;
-    background-color: white;
-}
-.progressBarIn {
-    border-style: none;
-    border-width: 0px;
-    border-radius: 4px;
-    background-color: blue;
-}
-.block {
-    border-style: solid;
-    border-width: 1px;
-    border-color: grey;
-    border-radius: 5px;
-    margin: 5px;
-}
-.collapse {
-    border-style: solid;
-    border-width: 1px;
-    border-color: grey;
-    border-radius: 5px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    font-weight: bold;
-    background-color: #ddd;
-}
-.collapse::before {
-    content: "- ";
-}
-.collapsed::before {
-    content: "+ ";
-}
-
-table.listing tr th {
-    background-color:skyblue;
-}
-table.listing tr:nth-child(odd) td {
-    background-color: paleturquoise;
-}
-table.listing tr:nth-child(even) td {
-    background-color: beige;
-}
-
-#code {
-    background-color: #2b2b2b;
-    color: #a9b7c6;
-}
-
-#out {
-    background-color: black;
-    color:chartreuse;
-    font-family: 'Courier New', Courier, monospace;
-}
-    </style>
 </head>
-<body style="background-color: ghostwhite">
+<body>
     <h2><img src="img/fulgens.svg" alt="fulgens icon" width="50" height="50" /> Ailurus fulgens</h2>
     <div id="loginBox">
         <table>
@@ -162,7 +103,7 @@ table.listing tr:nth-child(even) td {
         <div class="block">
             <div class="collapse">AI Code</div>
             <div id="playerContext">
-                <textarea id="code" style="width:100%" rows="60">
+                <textarea id="code">
 
 var instruction = {};
 instruction['TYPE'] = 'MoveTo';

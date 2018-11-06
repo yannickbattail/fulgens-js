@@ -11,43 +11,64 @@
     <script src="js/fulgens.js"></script>
     <script src="js/FulgensMap.js"></script>
     <style>
-        .progressBar {
-            border-style: solid;
-            border-width: 1px;
-            border-color: gray;
-            border-radius: 4px;
-            width: 100px;
-            background-color: white;
-        }
-        .progressBarIn {
-            border-style: none;
-            border-width: 0px;
-            border-radius: 4px;
-            background-color: blue;
-        }
-        .block {
-            border-style: solid;
-            border-width: 1px;
-            border-color: grey;
-            border-radius: 5px;
-            margin: 5px;
-        }
-        .collapse {
-            border-style: solid;
-            border-width: 1px;
-            border-color: grey;
-            border-radius: 5px;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            font-weight: bold;
-            background-color: #ddd;
-        }
-        .collapse::before {
-            content: "- ";
-        }
-        .collapsed::before {
-            content: "+ ";
-        }
+.progressBar {
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-radius: 4px;
+    width: 100px;
+    background-color: white;
+}
+.progressBarIn {
+    border-style: none;
+    border-width: 0px;
+    border-radius: 4px;
+    background-color: blue;
+}
+.block {
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    border-radius: 5px;
+    margin: 5px;
+}
+.collapse {
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-weight: bold;
+    background-color: #ddd;
+}
+.collapse::before {
+    content: "- ";
+}
+.collapsed::before {
+    content: "+ ";
+}
+
+table.listing tr th {
+    background-color:skyblue;
+}
+table.listing tr:nth-child(odd) td {
+    background-color: paleturquoise;
+}
+table.listing tr:nth-child(even) td {
+    background-color: beige;
+}
+
+#code {
+    background-color: #2b2b2b;
+    color: #a9b7c6;
+}
+
+#out {
+    background-color: black;
+    color:chartreuse;
+    font-family: 'Courier New', Courier, monospace;
+}
     </style>
 </head>
 <body style="background-color: ghostwhite">
@@ -133,7 +154,7 @@
         <div class="block">
                 <div class="collapse">Output</div>
                 <div id="out">
-                    &nbsp;
+                    output
                 </div>
             </div>
         <div>

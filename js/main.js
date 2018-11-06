@@ -76,50 +76,50 @@ function Gui() {
     }
 
     function displayStatsDrones(drones){
-        var html = "<table>";
+        var html = '<table class="listing">';
         html += "<tr>";
-        html += "   <th>Name<th>";
-        html += "   <th>Position<th>";
-        html += "   <th>Speed<th>";
-        html += "   <th>State<th>";
-        html += "   <th>Storage size<th>";
-        html += "   <th>Storage<th>";
-        html += "   <th>lastInstruction<th>";
-        html += "   <th>progression<th>";
-        html += "   <th>destination<th>";
-        html += "   <th>distance<th>";
-        html += "   <th>duration<th>";
-        html += "   <th>startedAt<th>";
-        html += "   <th>endAt<th>";
-        html += "   <th>abortedAt<th>";
+        html += "   <th>Name</th>";
+        html += "   <th>Position</th>";
+        html += "   <th>Speed</th>";
+        html += "   <th>State</th>";
+        html += "   <th>Storage size</th>";
+        html += "   <th>Storage</th>";
+        html += "   <th>lastInstruction</th>";
+        html += "   <th>progression</th>";
+        html += "   <th>destination</th>";
+        html += "   <th>distance</th>";
+        html += "   <th>duration</th>";
+        html += "   <th>startedAt</th>";
+        html += "   <th>endAt</th>";
+        html += "   <th>abortedAt</th>";
         html += "</tr>";
         for (var droneIndex = 0; droneIndex < drones.length; droneIndex++) {
             var drone = drones[droneIndex];
             html += "<tr>";
-            html += "   <td>"+drone.name+"<td>";
-            html += "   <td>"+formatCoord(drone.currentPosition)+"<td>";
-            html += "   <td>"+drone.speed+"<td>";
-            html += "   <td>"+drone.state+"<td>";
-            html += "   <td>"+drone.storageSize+"<td>";
-            html += "   <td>"+formatStrorage(drone.storage)+"<td>";
+            html += "   <td>"+drone.name+"</td>";
+            html += "   <td>"+formatCoord(drone.currentPosition)+"</td>";
+            html += "   <td>"+drone.speed+"</td>";
+            html += "   <td>"+drone.state+"</td>";
+            html += "   <td>"+drone.storageSize+"</td>";
+            html += "   <td>"+formatStrorage(drone.storage)+"</td>";
             if (drone.lastInstruction !== null){
-            html += "   <td>"+drone.lastInstruction.type+"<td>";
-            html += "   <td>"+formatProgress(drone.lastInstruction.progression)+"<td>";
-            html += "   <td>"+formatCoord(drone.lastInstruction.destination)+"<td>";
-            html += "   <td>"+formatNum(drone.lastInstruction.distance)+"<td>";
-            html += "   <td>"+formatNum(drone.lastInstruction.duration)+"<td>";
-            html += "   <td>"+formatDate(drone.lastInstruction.startedAt)+"<td>";
-            html += "   <td>"+formatDate(drone.lastInstruction.endAt)+"<td>";
-            html += "   <td>"+formatDate(drone.lastInstruction.abortedAt)+"<td>";
+            html += "   <td>"+drone.lastInstruction.type+"</td>";
+            html += "   <td>"+formatProgress(drone.lastInstruction.progression)+"</td>";
+            html += "   <td>"+formatCoord(drone.lastInstruction.destination)+"</td>";
+            html += "   <td>"+formatNum(drone.lastInstruction.distance)+"</td>";
+            html += "   <td>"+formatNum(drone.lastInstruction.duration)+"</td>";
+            html += "   <td>"+formatDate(drone.lastInstruction.startedAt)+"</td>";
+            html += "   <td>"+formatDate(drone.lastInstruction.endAt)+"</td>";
+            html += "   <td>"+formatDate(drone.lastInstruction.abortedAt)+"</td>";
             } else {
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
-                html += "   <td> - <td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
+                html += "   <td> - </td>";
             }
             html += "</tr>";
         }
@@ -129,14 +129,14 @@ function Gui() {
     }
 
     function displayPlayerContext(playerContext) {
-        var html = "<table>";
+        var html = '<table class="listing">';
         html += "<tr>";
         html += "   <th>Resources</th>";
         html += "</tr>";
         for (var resIndex = 0; resIndex < playerContext.resources.length; resIndex++) {
             var resource = playerContext.resources[resIndex];
             html += "<tr>";
-            html += "   <td>"+formatStrorage(resource)+"<td>";
+            html += "   <td>"+formatStrorage(resource)+"</td>";
             html += "</tr>";
         }
         html += "<tr>";
@@ -153,14 +153,14 @@ function Gui() {
 
     function displayGoal(map) {
         var html = '<div id="mapDescription">'+map.description+"</div>";
-        html += "<table>";
+        html += '<table class="listing">';
         html += "<tr>";
         html += "   <th>Goal</th>";
         html += "</tr>";
         for (var resIndex = 0; resIndex < map.resourceGoal.length; resIndex++) {
             var resource = map.resourceGoal[resIndex];
             html += "<tr>";
-            html += "   <td>"+formatStrorage(resource)+"<td>";
+            html += "   <td>"+formatStrorage(resource)+"</td>";
             html += "</tr>";
         }
         html += "</table>";

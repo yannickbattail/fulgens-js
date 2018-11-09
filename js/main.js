@@ -124,7 +124,7 @@ function Gui() {
             html += "</tr>";
         }
         html += "</table>";
-        
+        html += '<div id="lastUpdate">Last update: ' + formatDate(new Date())+'</div>';
         $('#stats').html(html);
     }
 

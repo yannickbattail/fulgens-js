@@ -5,7 +5,7 @@ function FulgensMap(canvasId) {
     var id = canvasId;
     var canvas = document.getElementById(id);
     var ctx = canvas.getContext('2d');
-    var squareSize = 3;
+    var squareSize = 10;
 
     var images = [];
     images['map'] = new Image();

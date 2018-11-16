@@ -48,6 +48,19 @@ body {
     content: "+ ";
 }
 
+#tuto {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    width: 500px;
+    height: 300px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(55, 58, 60);
+    border-radius: 4px;
+    background-color: moccasin;
+}
+
 table.listing tr th {
     background-color:skyblue;
 }

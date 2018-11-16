@@ -39,6 +39,36 @@
     </div>
 
     <div id="gui">
+
+        <div id="tuto" class="tuto">
+            <div>
+                <img src="img/fulgens.svg" alt="fulgens icon" width="20" height="20" />
+                Tuto
+                <button onclick="$('#tuto').hide();">X</button>
+            </div>
+            <div id="tuto_page0" class="tuto_page">
+                
+                Welcome to AIlurus Fulgens, a coding game where you build your AI.
+                <div>
+                    <button onclick="$('#tuto_page0').hide();$('#tuto_page1').show();">next</button>
+                </div>
+            </div>
+            <div id="tuto_page1" class="tuto_page" style="display: none;">
+                Map, Drones, Map info, player, manual action, output and AI code
+                <div>
+                    <button onclick="$('#tuto_page1').hide();$('#tuto_page0').show();">previous</button>
+                    <button onclick="$('#tuto_page1').hide();$('#tuto_page2').show();">next</button>
+                    
+                </div>
+            </div>
+            <div id="tuto_page2" class="tuto_page" style="display: none;">
+                FulgensApi
+                <div>
+                    <button onclick="$('#tuto_page2').hide();$('#tuto_page1').show();">previous</button>
+                </div>
+            </div>
+        </div>
+
         <div class="block">
             <div class="collapse">Map</div>
             <div class="block-body" id="">
@@ -89,13 +119,13 @@
                 <input type="button" id="doIt" value="Do it!" />
             </div>
         </div>
+
         <div class="block">
-                <div class="collapse">Output</div>
-                <div class="block-body" id="out">
-                    output
-                </div>
+            <div class="collapse">Output</div>
+            <div class="block-body" id="out">
+                output
             </div>
-        <div>
+        </div>
 
         <div class="block">
             <div class="collapse">AI Code</div>
@@ -128,11 +158,12 @@ function collectDrone_1()
 
 Fulgens.setTimeout(collectDrone_1, 2*60*1000); // 2min in ms
 
-            </textarea>
-            <br />
-            <input type="button" id="run" value="run" />
-            <input type="button" id="stop" value="stop" />
-        
+                </textarea>
+                <br />
+                <input type="button" id="run" value="run" />
+                <input type="button" id="stop" value="stop" />
+            
+            </div>
         </div>
     </div>
 </body>

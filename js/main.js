@@ -8,7 +8,10 @@ function Gui() {
         instruction['DroneName'] = $('#Drone').val();
         if (instruction['TYPE'] === 'MoveTo') {
             var destination = $('#Destination').val().split(',', 2);
-            instruction['Destination'] = {"X":destination[0], "Y":destination[1]};
+            instruction['Destination'] = {
+                "X": destination[0],
+                "Y": destination[1]
+            };
         } else {
             instruction['Destination'] = null;
         }
@@ -42,40 +45,40 @@ function Gui() {
 
     }
 
-    function formatNum(num){
-        return Math.round(num*10)/10;
+    function formatNum(num) {
+        return Math.round(num * 10) / 10;
     }
 
-    function formatCoord(coord){
+    function formatCoord(coord) {
         if (coord == null) {
             return ' - ';
         }
-        return coord.x+';'+coord.y;
+        return coord.x + ';' + coord.y;
     }
 
-    function formatStrorage(st){
+    function formatStorage(st) {
         if (st == null) {
             return ' - ';
         }
-        return st.quantity+' '+st.resource ;
+        return st.quantity + ' ' + st.resource;
     }
 
-    function formatDate(d){
+    function formatDate(d) {
         if (d == null) {
             return ' - ';
         }
         var date = new Date(d);
-        return date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+        return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
     }
 
-    function formatProgress(num){
-        var s =  Math.round(num*100);
+    function formatProgress(num) {
+        var s = Math.round(num * 100);
         return '<div class="progressBar">' +
-            '<div class="progressBarIn" style="width:'+s+'px;">'+s+'&nbsp;%</div>' +
+            '<div class="progressBarIn" style="width:' + s + 'px;">' + s + '&nbsp;%</div>' +
             '</div>';
     }
 
-    function displayStatsDrones(drones){
+    function displayStatsDrones(drones) {
         var html = '<table class="listing">';
         html += "<tr>";
         html += "   <th>Name</th>";
@@ -91,26 +94,26 @@ function Gui() {
         html += "   <th>duration</th>";
         html += "   <th>startedAt</th>";
         html += "   <th>endAt</th>";
-        html += "   <th>abortedAt</th>";
+        //html += "   <th>abortedAt</th>";
         html += "</tr>";
         for (var droneIndex = 0; droneIndex < drones.length; droneIndex++) {
             var drone = drones[droneIndex];
             html += "<tr>";
-            html += "   <td>"+drone.name+"</td>";
-            html += "   <td>"+formatCoord(drone.currentPosition)+"</td>";
-            html += "   <td>"+drone.speed+"</td>";
-            html += "   <td>"+drone.state+"</td>";
-            html += "   <td>"+drone.storageSize+"</td>";
-            html += "   <td>"+formatStrorage(drone.storage)+"</td>";
-            if (drone.lastInstruction !== null){
-            html += "   <td>"+drone.lastInstruction.type+"</td>";
-            html += "   <td>"+formatProgress(drone.lastInstruction.progression)+"</td>";
-            html += "   <td>"+formatCoord(drone.lastInstruction.destination)+"</td>";
-            html += "   <td>"+formatNum(drone.lastInstruction.distance)+"</td>";
-            html += "   <td>"+formatNum(drone.lastInstruction.duration)+"</td>";
-            html += "   <td>"+formatDate(drone.lastInstruction.startedAt)+"</td>";
-            html += "   <td>"+formatDate(drone.lastInstruction.endAt)+"</td>";
-            html += "   <td>"+formatDate(drone.lastInstruction.abortedAt)+"</td>";
+            html += "   <td>" + drone.name + "</td>";
+            html += "   <td>" + formatCoord(drone.currentPosition) + "</td>";
+            html += "   <td>" + drone.speed + "</td>";
+            html += "   <td>" + drone.state + "</td>";
+            html += "   <td>" + drone.storageSize + "</td>";
+            html += "   <td>" + formatStorage(drone.storage) + "</td>";
+            if (drone.lastInstruction !== null) {
+                html += "   <td>" + drone.lastInstruction.type + "</td>";
+                html += "   <td>" + formatProgress(drone.lastInstruction.progression) + "</td>";
+                html += "   <td>" + formatCoord(drone.lastInstruction.destination) + "</td>";
+                html += "   <td>" + formatNum(drone.lastInstruction.distance) + "</td>";
+                html += "   <td>" + formatNum(drone.lastInstruction.duration) + "</td>";
+                html += "   <td>" + formatDate(drone.lastInstruction.startedAt) + "</td>";
+                html += "   <td>" + formatDate(drone.lastInstruction.endAt) + "</td>";
+                //html += "   <td>"+formatDate(drone.lastInstruction.abortedAt)+"</td>";
             } else {
                 html += "   <td> - </td>";
                 html += "   <td> - </td>";
@@ -119,12 +122,12 @@ function Gui() {
                 html += "   <td> - </td>";
                 html += "   <td> - </td>";
                 html += "   <td> - </td>";
-                html += "   <td> - </td>";
+                //html += "   <td> - </td>";
             }
             html += "</tr>";
         }
         html += "</table>";
-        html += '<div id="lastUpdate">Last update: ' + formatDate(new Date())+'</div>';
+        html += '<div id="lastUpdate">Last update: ' + formatDate(new Date()) + '</div>';
         $('#stats').html(html);
     }
 
@@ -136,7 +139,7 @@ function Gui() {
         for (var resIndex = 0; resIndex < playerContext.resources.length; resIndex++) {
             var resource = playerContext.resources[resIndex];
             html += "<tr>";
-            html += "   <td>"+formatStrorage(resource)+"</td>";
+            html += "   <td>" + formatStorage(resource) + "</td>";
             html += "</tr>";
         }
         html += "<tr>";
@@ -152,7 +155,7 @@ function Gui() {
     }
 
     function displayGoal(map) {
-        var html = '<div id="mapDescription">'+map.description+"</div>";
+        var html = '<div id="mapDescription">' + map.description + "</div>";
         html += '<table class="listing">';
         html += "<tr>";
         html += "   <th>Goal</th>";
@@ -160,7 +163,7 @@ function Gui() {
         for (var resIndex = 0; resIndex < map.resourceGoal.length; resIndex++) {
             var resource = map.resourceGoal[resIndex];
             html += "<tr>";
-            html += "   <td>"+formatStrorage(resource)+"</td>";
+            html += "   <td>" + formatStorage(resource) + "</td>";
             html += "</tr>";
         }
         html += "</table>";
@@ -171,12 +174,14 @@ function Gui() {
     function run() {
         Fulgens.clearAll();
         var code = $('#code').val();
-        code  = '(function() { '+code+' }) ();';
+        code = '(function() { ' + code + ' }) ();';
         eval(code);
     }
+
     function stop() {
         Fulgens.clearAll();
     }
+
     function createPlayer() {
         //for tests use class: AilurusMockedApi
         //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
@@ -193,6 +198,7 @@ function Gui() {
             }
         );
     }
+
     function login() {
         //for tests use class: AilurusMockedApi
         //ailurusApi = new AilurusMockedApi("http://localhost:61218/",
@@ -222,5 +228,4 @@ function Gui() {
     document.getElementById('run').onclick = run;
     document.getElementById('createPlayer').onclick = createPlayer;
     document.getElementById('login').onclick = login;
-
 }

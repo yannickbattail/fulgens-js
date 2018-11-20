@@ -39,7 +39,7 @@
     </div>
 
     <div id="gui">
-        <div onclick="$('#tuto').show();" style="text-decoration: underline; color: blue">Show tuto</div>
+        <div onclick="$('#tuto').show();" style="text-decoration: underline; color:#10a54a">Show tuto</div>
         <div id="tuto" class="tuto">
             <div>
                 <img src="img/fulgens.svg" alt="fulgens icon" width="20" height="20" />
@@ -47,18 +47,19 @@
                 <button onclick="$('#tuto').hide();">X</button>
             </div>
             <div id="tuto_page0" class="tuto_page">
-                Welcome to AIlurus Fulgens, a coding game where you build your AI.<br />
+                <h3>Welcome to AIlurus Fulgens</h3> a coding game where you build your AI.<br />
                 Why the name AIlurus Fulgens?<br />
                 It's the latin name of the specie of the cute red panda.
                 <img src="img/fulgens.svg" alt="fulgens icon" width="20" height="20" /><br />
-                It also begin with AI for Artificial Intelligence.<br />
+                It also begin with <b>AI</b> for <b>A</b>rtificial <b>I</b>ntelligence.<br />
                 <div>
                     <button onclick="$('#tuto_page0').hide();$('#tuto_page1').show();">next</button>
                 </div>
             </div>
             <div id="tuto_page1" class="tuto_page" style="display: none;">
-                Ailurus is the part of the project that manage the maps and the drones of every players<br />
-                Fulgens is the graphic interface where you AI runs.
+                <h3>AIlurus Fulgens project</h3>
+                <b>Ailurus</b> is server, the part of the project that manage the maps and the drones of every players<br />
+                <b>Fulgens</b> is client, the graphic interface where you AI runs.
                 <div>
                     <button onclick="$('#tuto_page1').hide();$('#tuto_page0').show();">previous</button>
                     <button onclick="$('#tuto_page1').hide();$('#tuto_page2').show();">next</button>
@@ -66,30 +67,34 @@
                 </div>
             </div>
             <div id="tuto_page2" class="tuto_page" style="display: none;">
-                <b>The Blocks in this page</b><br />
-                Map: display of the map Factories, mines and your drones.<br />
-                Drones: status and position of your drones, progression of the current instruction.<br />
-                Map info: description of the map and quantity of resources to finish the level.<br />
-                Player: player stats and current quantity of resources int the factory.<br />
-                Manual action: a small form to manualy send instructions to you drones.<br />
-                Output: output of the execution of you code.<br />
-                AI code: the code of you IA.
+                <h3>The Blocks in this page</h3><br />
+                <ul>
+                    <li>Map</li> display of the map Factories, mines and your drones.<br />
+                    <li>Drones</li> status and position of your drones, progression of the current instruction.<br />
+                    <li>Map info</li> description of the map and quantity of resources to finish the level.<br />
+                    <li>Player</li> player stats and current quantity of resources int the factory.<br />
+                    <li>Manual action</li> a small form to manualy send instructions to you drones.<br />
+                    <li>Output</li> output of the execution of you code.<br />
+                    <li>AI code</li> the code of you IA.
+                </ul>
                 <div>
                     <button onclick="$('#tuto_page2').hide();$('#tuto_page1').show();">previous</button>
                     <button onclick="$('#tuto_page2').hide();$('#tuto_page3').show();">next</button>
                 </div>
             </div>
             <div id="tuto_page3" class="tuto_page" style="display: none;">
-                <b>AilurusApi</b> (how to get map and drone info and send instructions)<br />
-                Send instructions:<br />
+                <h3>AilurusApi</h3>
+                how to get map and drone info and send instructions<br />
+                <b>Send instructions:</b><br />
                 <code>ailurusApi.instructions(instructions , fctOnSuccess, fctOnError);</code><br />
-                instructions: <code>[{'TYPE': 'MoveTo', 'DroneName': 'Drone_1','Destination': {"X":45, "Y":45}}];</code>
+                Instructions: <code>[{'TYPE': 'MoveTo', 'DroneName': 'Drone_1','Destination': {"X":45, "Y":45}}];</code><br />
+                TYPE can be : MoveTo, Unload or Collect<br />
                 <br />
-                Get map info:<br />
-                <code>ailurusApi.ailurusApi.map(function (map) { doSomthingWithTheMap(map);}, fctOnError);</code><br />
+                <b>Get map info:</b><br />
+                <code>ailurusApi.map(function (map) { doSomthingWithTheMap(map);}, fctOnError);</code><br />
                 <br />
-                Get player and drones info:<br />
-                <code>ailurusApi.ailurusApi.playerContext(function (player) { doSomthingWithThePlayer(player);}, fctOnError);</code><br />
+                <b>Get player and drones info:</b><br />
+                <code>ailurusApi.playerContext(function (player) { doSomthingWithThePlayer(player);}, fctOnError);</code><br />
                 <br />
                 For more info see: <a href="https://github.com/yannickbattail/fulgens-js/blob/master/docs/ailurus-api.md">https://github.com/yannickbattail/fulgens-js/blob/master/docs/ailurus-api.md</a>
                 <div>
@@ -98,10 +103,22 @@
                 </div>
             </div>
             <div id="tuto_page4" class="tuto_page" style="display: none;">
-                <b>Fulgens</b> (schedule and repeate task)<br />
+                <h3>Fulgens functions</h3>
+                Schedule and repeat task<br />
+                Execute <i>theFunction</i> after <i>timeout</i> milliseconds<br />
+                <code>var timeoutID = Fulgens.setTimeout(theFunction, timeout);</code>
                 <br />
-
-                For more info see: <a href="https://github.com/yannickbattail/fulgens-js/blob/master/docs/ailurus-api.md">https://github.com/yannickbattail/fulgens-js/blob/master/docs/ailurus-api.md</a>
+                Repeat (call) <i>theFunction</i> every <i>interval</i> milliseconds<br />
+                <code>var intervalID = Fulgens.setInterval(theFunction, interval);</code>
+                <br />
+                Abort timeout or interval (the 2 previous functions)<br />
+                <code>Fulgens.clearTimeout(timeoutID);</code><br />
+                <code>Fulgens.clearTimeout(intervalID);</code><br />
+                <br />
+                <b>Note:</b> these function behave the same as window.setTimeout() and window.setInterval()<br />
+                But it's important to use them, because without them the buttons "stop" and "start" won't work.<br />
+                <br />
+                For more info see: <a href="https://github.com/yannickbattail/fulgens-js/blob/master/docs/fulgens.md">https://github.com/yannickbattail/fulgens-js/blob/master/docs/fulgens.md</a>
                 <div>
                     <button onclick="$('#tuto_page4').hide();$('#tuto_page3').show();">previous</button>
                 </div>

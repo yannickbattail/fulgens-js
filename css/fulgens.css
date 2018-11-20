@@ -1,6 +1,15 @@
 body {
-    background-color: ghostwhite;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: white;
+    font-family: "Droid Sans", sans-serif;
+}
+
+a {
+    color: #10a54a;
+}
+button {
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .progressBar {
@@ -26,20 +35,22 @@ body {
 .block-body {
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(55, 58, 60);
+    border-color: #c3e8d1;;
     border-radius: 4px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    background-color: #ebf7f0;
 }
 .collapse {
+    color: white;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(55, 58, 60);
+    border-color: #10a54a;
     border-radius: 4px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    font-weight: bold;
-    background-color: #ddd;
+    font-weight: normal;
+    background-color: #10a54a;
 }
 .collapse::before {
     content: "- ";
@@ -56,20 +67,34 @@ body {
     height: 500px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(55, 58, 60);
+    border-color: #e5e0c6;
     border-radius: 4px;
-    background-color: moccasin;
+    background-color: #fcf6db;;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.2);
 }
 
 table.listing tr th {
-    background-color:skyblue;
+    font-weight: normal;
+    padding: 5px;
+    font-size: 0.9em;
+    color: #666666;
+    border-bottom: 1px solid #999999;
 }
+
+table.listing tr td {
+    padding: 6px;
+    font-size: 0.9em;
+    border-bottom: 1px solid #cccccc;
+    vertical-align: top;
+}
+/*
 table.listing tr:nth-child(odd) td {
     background-color: paleturquoise;
 }
 table.listing tr:nth-child(even) td {
     background-color: beige;
 }
+*/
 
 #code {
     background-color: #2b2b2b;
@@ -80,6 +105,6 @@ table.listing tr:nth-child(even) td {
 
 #out {
     background-color: black;
-    color:chartreuse;
+    color:#10a54a;
     font-family: 'Courier New', Courier, monospace;
 }

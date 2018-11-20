@@ -144,9 +144,9 @@ function Gui() {
         }
         html += "<tr>";
         if (playerContext.goalAchieved) {
-            html += "   <th><h3>Goal achieved!</h3></th>";
+            html += "   <td><h3>Goal achieved!</h3></td>";
         } else {
-            html += "   <th>Goal not yet achieved</th>";
+            html += "   <td>Goal not yet achieved</t>";
         }
         html += "</tr>";
         html += "</table>";

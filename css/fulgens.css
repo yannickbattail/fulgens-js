@@ -35,22 +35,21 @@ button {
 .block-body {
     border-style: solid;
     border-width: 1px;
-    border-color: #c3e8d1;;
+    border-color: #c3e8d1;
     border-radius: 4px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     background-color: #ebf7f0;
 }
 .collapse {
-    color: white;
     border-style: solid;
     border-width: 1px;
-    border-color: #10a54a;
+    border-color: #c3e8d1;
     border-radius: 4px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     font-weight: normal;
-    background-color: #10a54a;
+    background-color: #ebf7f0;
 }
 .collapse::before {
     content: "- ";
@@ -71,6 +70,23 @@ button {
     border-radius: 4px;
     background-color: #fcf6db;;
     box-shadow: 5px 5px 5px rgba(0,0,0,.2);
+}
+.toto-bar {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e5e0c6;
+}
+.toto-bar img {
+    float: left;
+    vertical-align: middle;
+}
+.toto-bar div {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+}
+.toto-bar button {
+    float: right;
 }
 
 table.listing tr th {

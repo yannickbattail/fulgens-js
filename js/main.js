@@ -143,11 +143,19 @@ function Gui() {
             html += "</tr>";
         }
         html += "<tr>";
-        if (playerContext.goalAchieved) {
+        if (playerContext.isTimeGoalAchieved) {
             html += "   <td><h3>Goal achieved!</h3></td>";
+        } else if (playerContext.isResourceGoalAchieved) {
+            html += "   <td><h3>Goal FAIL!</h3>You have all the needed resources, but too late.</td>";
         } else {
             html += "   <td>Goal not yet achieved</t>";
         }
+        html += "</tr>";
+        html += "<tr>";
+        html += "   <td>Start time: "+formatDate(playerContext.startTime)+"</td>";
+        html += "</tr>";
+        html += "<tr>";
+        html += "   <td>Spent time: "+playerContext.spentTime+"</td>";
         html += "</tr>";
         html += "</table>";
 
@@ -167,7 +175,7 @@ function Gui() {
             html += "</tr>";
         }
         html += "</table>";
-
+        html += "Time limit to achieve goal: "+ map.timeLimitGoal;
         $('#goal').html(html);
     }
 
